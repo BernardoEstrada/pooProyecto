@@ -7,5 +7,6 @@ public class Main {
         principal.setVisible(true);
         principal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         System.out.println("qert");
+        System.out.println("asdfghm");
     }
 }
