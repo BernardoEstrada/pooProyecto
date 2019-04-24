@@ -6,6 +6,6 @@ public class Main {
         VentanaMenu principal = new VentanaMenu(400,800);
         principal.setVisible(true);
         principal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
+        System.out.println("asdfg");
     }
 }
