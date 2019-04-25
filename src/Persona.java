@@ -160,7 +160,6 @@ public abstract class Persona {
         }
     }
 
-
     public abstract void paint(Graphics g);
 
     public int getId() {
