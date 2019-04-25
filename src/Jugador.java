@@ -1,4 +1,7 @@
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class Jugador extends Persona {
@@ -28,34 +31,6 @@ public class Jugador extends Persona {
             g.fillRect(posicionX,posicionY+tamanio/2,tamanio/2,tamanio/10);
         }
         bala.paint(g);
-    }
-
-
-    public void mover(int tecla, ArrayList<Obstaculos> obs){
-        /*
-        37 izquierda
-		38 arriba
-		39 derecha
-		40 abajo
-         */
-        //Rectangle u = new Rectangle(posicionX,posicionY,tamanio,tamanio);
-        if(tecla == 37){
-            facingF = false;
-            if(!colisionLeft(obs)){
-                posicionX -= velocidadX;
-            }
-        }
-        if(tecla == 39){
-            facingF = true;
-            if(!colisionRight(obs)){
-               posicionX += velocidadX;
-           }
-        }
-        if(tecla == 38 && !jumping){
-            jumping=true;
-            velocidadY=-7;
-        }
-
     }
 
     public boolean disparar(){

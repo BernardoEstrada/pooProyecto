@@ -12,7 +12,7 @@ import java.util.Random;
 public class MiCanvas extends Canvas implements KeyListener, ActionListener {
     private Jugador usuario;
     private Enemigo enemy;
-    private Timer reloj, relojGra;
+    private Timer relojGra;
     ArrayList<Obstaculos> obs;
 
     private BufferedImage imagen;
@@ -30,7 +30,6 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         obs.add(new Obstaculos(3,300,200,100,100));
         obs.add(new Obstaculos(4,500,150,100,50));
         addKeyListener(this);
-        reloj = new Timer(10, this);
         relojGra = new Timer(10, this);
         imagen = new BufferedImage(800, 400, BufferedImage.TYPE_INT_RGB);
 
@@ -64,9 +63,7 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         usuario.mover(pressed, obs);
 
         if(pressed == 32){
-            if(usuario.disparar()){
-                reloj.start();
-            }
+            usuario.disparar();
         }
         this.repaint();
     }
@@ -78,14 +75,8 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
     public void keyTyped(KeyEvent e) {}
 
     public void actionPerformed(ActionEvent evento) {
+        /*
         if(evento.getSource() == reloj) {
-            if (usuario.getBala().isActive()) {
-                usuario.getBala().avanzar();
-
-                if(usuario.getBala().getPosicionX() + usuario.getBala().getVelocidadX() >= 800 || usuario.getBala().getPosicionX() - usuario.getBala().getVelocidadX() <= 0){
-                    reloj.stop();
-                    usuario.getBala().setActive(false);
-                }
                 if(usuario.getBala().getPosicionX()>enemy.getPosicionX() && usuario.getBala().getPosicionX()<enemy.getPosicionX()+enemy.getTamanio() && usuario.getBala().getPosicionY()>enemy.getPosicionY() && usuario.getBala().getPosicionY()<enemy.getPosicionY()+enemy.getTamanio()){
                     Random random = new Random();
                     enemy = new Enemigo(random.nextInt(750),1);
@@ -95,7 +86,7 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
             } else {
                 reloj.stop();
             }
-        }
+        }*/
         if (evento.getSource() == relojGra){
             usuario.gravity(obs);
             enemy.gravity(obs);

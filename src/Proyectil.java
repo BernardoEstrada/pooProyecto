@@ -1,8 +1,13 @@
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
 
-public class Proyectil {
+public class Proyectil implements ActionListener {
     private int posicionX, posicionY, radio, velocidadX;
     private boolean active, direccion;
+    private Timer reloj;
 
     public Proyectil(int radio, int posicionX, int posicionY) {
         this.posicionX = posicionX;
@@ -11,6 +16,7 @@ public class Proyectil {
         this.velocidadX = 10;
         active = false;
         direccion = true;
+        reloj = new Timer(10, this);
     }
 
     public void paint(Graphics g) {
@@ -26,6 +32,19 @@ public class Proyectil {
         } else {
             posicionX -= velocidadX;
         }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent evento) {
+        if(evento.getSource() == reloj) {
+            if (active) {
+                avanzar();
+                if(posicionX+ velocidadX >= 800 || posicionX - velocidadX <= 0){
+                    setActive(false);
+                }
+            }
+        }
+
     }
 
     public int getPosicionX() {
@@ -66,6 +85,11 @@ public class Proyectil {
 
     public void setActive(boolean active) {
         this.active = active;
+        if(active){
+            reloj.start();
+        } else{
+            reloj.stop();
+        }
     }
 
     public boolean isDireccion() {
