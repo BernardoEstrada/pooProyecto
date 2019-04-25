@@ -58,10 +58,24 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
 
     @Override
     public void keyPressed(KeyEvent e){
-        int pressed = e.getKeyCode();
-        System.out.println(pressed);
-        usuario.mover(pressed, obs);
+        /*
+        37 izquierda
+		38 arriba
+		39 derecha
+		40 abajo
+         */
 
+        int pressed = e.getKeyCode();
+
+        if(pressed == 37){
+            usuario.moveB(true);
+        }
+        if(pressed == 39){
+            usuario.moveF(true);
+        }
+        if(pressed == 38){
+            usuario.jump();
+        }
         if(pressed == 32){
             usuario.disparar();
         }
@@ -69,7 +83,16 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {
+        int released = e.getKeyCode();
+
+        if(released == 37){
+            usuario.moveB(false);
+        }
+        if(released == 39){
+            usuario.moveF(false);
+        }
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {}
@@ -89,6 +112,7 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         }*/
         if (evento.getSource() == relojGra){
             usuario.gravity(obs);
+            usuario.mover(obs);
             enemy.gravity(obs);
         }
         repaint();

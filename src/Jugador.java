@@ -33,25 +33,6 @@ public class Jugador extends Persona {
         bala.paint(g);
     }
 
-    public boolean disparar(){
-        if(!bala.isActive()){
-            bala.setDireccion(facingF);
-            bala.setPosicionX(posicionX+tamanio/2);
-            bala.setPosicionY(posicionY+tamanio/2);
-            bala.setActive(true);
-            return true;
-        }
-        return false;
-    }
-
-    public Proyectil getBala() {
-        return bala;
-    }
-
-    public void setBala(Proyectil bala) {
-        this.bala = bala;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -60,12 +41,4 @@ public class Jugador extends Persona {
         this.nombre = nombre;
     }
 
-
-    public boolean isJumping() {
-        return jumping;
-    }
-
-    public void setJumping(boolean jumping) {
-        this.jumping = jumping;
-    }
 }

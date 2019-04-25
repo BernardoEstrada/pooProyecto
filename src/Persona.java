@@ -4,10 +4,12 @@ import java.util.ListIterator;
 
 public abstract class Persona {
 
-    protected int id, danio, posicionX, posicionY, tamanio, tipo, velocidadX;
+    protected final static int VX = 2, VY = 10;
+
+    protected int id, danio, posicionX, posicionY, tamanio, tipo, velocidadX, jumping;
     protected double velocidadY;
     protected final double GRAVITY = 0.2;
-    protected boolean jumping, facingF;
+    protected boolean facingF;
     protected Proyectil bala;
 
     public Persona(){
@@ -17,9 +19,9 @@ public abstract class Persona {
         posicionY = 100;
         tamanio = 50;
         tipo = 1;
-        velocidadX = 10;
-        velocidadY = 10;
-        jumping = false;
+        velocidadX = 0;
+        velocidadY = 0;
+        jumping = 0;
         facingF = true;
     }
 
@@ -28,9 +30,9 @@ public abstract class Persona {
         this.posicionY = posicionY;
         tamanio = 50;
         tipo = 1;
-        velocidadX = 10;
-        velocidadY = 10;
-        jumping = false;
+        velocidadX = 0;
+        velocidadY = 0;
+        jumping = 0;
         facingF = true;
         id = 0;
 
@@ -43,9 +45,9 @@ public abstract class Persona {
         this.posicionY = posicionY;
         this.tamanio = tamanio;
         danio = 5;
-        velocidadX = 10;
-        velocidadY = 10;
-        jumping = false;
+        velocidadX = 0;
+        velocidadY = 0;
+        jumping = 0;
         facingF = true;
     }
 
@@ -59,8 +61,19 @@ public abstract class Persona {
         this.tipo = tipo;
         this.velocidadX = velocidadX;
         this.velocidadY = velocidadY;
-        jumping = false;
+        jumping = 0;
         facingF = true;
+    }
+
+    public boolean disparar(){
+        if(!bala.isActive()){
+            bala.setDireccion(facingF);
+            bala.setPosicionX(posicionX+tamanio/2);
+            bala.setPosicionY(posicionY+tamanio/2);
+            bala.setActive(true);
+            return true;
+        }
+        return false;
     }
 
     public boolean colisionDown(ArrayList<Obstaculos> obs){
@@ -79,7 +92,7 @@ public abstract class Persona {
         Obstaculos tmp;
         while(itr.hasNext()){
             tmp = (Obstaculos)itr.next();
-            if((posicionX-velocidadX<tmp.getPosicionX()+tmp.getTamanioX() && posicionX-velocidadX>tmp.getPosicionX() && posicionY+tamanio>tmp.getPosicionY() && posicionY<tmp.getPosicionY()+tmp.getTamanioY()) || posicionX-velocidadX<0){
+            if((posicionX+velocidadX<tmp.getPosicionX()+tmp.getTamanioX() && posicionX+velocidadX>tmp.getPosicionX() && posicionY+tamanio>tmp.getPosicionY() && posicionY<tmp.getPosicionY()+tmp.getTamanioY()) || posicionX-velocidadX<0){
                 return true;
             }
         }
@@ -97,29 +110,32 @@ public abstract class Persona {
         return false;
     }
 
-    public void mover(int tecla, ArrayList<Obstaculos> obs){
-        /*
-        37 izquierda
-		38 arriba
-		39 derecha
-		40 abajo
-         */
-        //Rectangle u = new Rectangle(posicionX,posicionY,tamanio,tamanio);
-        if(tecla == 37){
-            facingF = false;
-            if(!colisionLeft(obs)){
-                posicionX -= velocidadX;
-            }
-        }
-        if(tecla == 39){
+    public void moveF(boolean activ){
+        if(activ) {
             facingF = true;
-            if(!colisionRight(obs)){
-                posicionX += velocidadX;
-            }
+            setVelocidadX(VX);
+        } else{
+            setVelocidadX(0);
         }
-        if(tecla == 38 && !jumping){
-            jumping=true;
-            velocidadY=-5;
+    }
+    public void moveB(boolean activ){
+        if(activ){
+            facingF = false;
+            setVelocidadX(-VX);
+        } else{
+            setVelocidadX(0);
+        }
+    }
+
+    public void mover(ArrayList<Obstaculos> obs){
+
+        //Rectangle u = new Rectangle(posicionX,posicionY,tamanio,tamanio);
+        if(!colisionLeft(obs) && !facingF){
+            posicionX += velocidadX;
+        }else if(!colisionRight(obs) && facingF){
+            posicionX += velocidadX;
+        } else{
+            velocidadX = 0;
         }
 
     }
@@ -130,7 +146,14 @@ public abstract class Persona {
             velocidadY += GRAVITY;
         } else {
             velocidadY = 0;
-            jumping=false;
+            jumping=0;
+        }
+    }
+
+    public void jump(){
+        if(jumping<2) {
+            setJumping(jumping + 1);
+            setVelocidadY(-5);
         }
     }
 
@@ -204,11 +227,11 @@ public abstract class Persona {
         return GRAVITY;
     }
 
-    public boolean isJumping() {
+    public int getJumping() {
         return jumping;
     }
 
-    public void setJumping(boolean jumping) {
+    public void setJumping(int jumping) {
         this.jumping = jumping;
     }
 
@@ -218,5 +241,21 @@ public abstract class Persona {
 
     public void setFacingF(boolean facingF) {
         this.facingF = facingF;
+    }
+
+    public static int getVX() {
+        return VX;
+    }
+
+    public static int getVY() {
+        return VY;
+    }
+
+    public Proyectil getBala() {
+        return bala;
+    }
+
+    public void setBala(Proyectil bala) {
+        this.bala = bala;
     }
 }
