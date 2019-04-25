@@ -1,4 +1,4 @@
-import javax.swing.*;
+import javax.swing.WindowConstants;
 
 public class Main {
 
