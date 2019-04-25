@@ -18,17 +18,17 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
     private BufferedImage imagen;
 
 
-    public MiCanvas(){
+    public MiCanvas() {
         super();
         this.setFocusable(true);
         obs = new ArrayList<>(5);
-        usuario = new Jugador(1,50,50,50,"Martin");
-        enemy = new Enemigo(1,50,525,50, 50, 1, 10, 10);
+        usuario = new Jugador(1, 50, 50, 50, "Martin");
+        enemy = new Enemigo(1, 50, 525, 50, 50, 1, 10, 10);
         //enemy = new Enemigo(1,50,200,50, 50, 1, 10, 10);
 
-        obs.add(new Obstaculos(2,0,300,800,100));
-        obs.add(new Obstaculos(3,300,200,100,100));
-        obs.add(new Obstaculos(4,500,150,100,50));
+        obs.add(new Obstaculos(2, 0, 300, 800, 100));
+        obs.add(new Obstaculos(3, 300, 200, 100, 100));
+        obs.add(new Obstaculos(4, 500, 150, 100, 50));
         addKeyListener(this);
         relojGra = new Timer(10, this);
         imagen = new BufferedImage(800, 400, BufferedImage.TYPE_INT_RGB);
@@ -36,12 +36,12 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         relojGra.start();
     }
 
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
         Graphics gra = imagen.createGraphics();
         gra.setColor(Color.white);
         gra.fillRect(0, 0, this.getWidth(), this.getHeight());
         ListIterator<Obstaculos> itr = obs.listIterator();
-        while (itr.hasNext()){
+        while (itr.hasNext()) {
             itr.next().paint(gra);
         }
         usuario.paint(gra);
@@ -52,12 +52,12 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         g.drawImage(imagen, 0, 0, null);
     }
 
-    public void update(Graphics g){
+    public void update(Graphics g) {
         paint(g);
     }
 
     @Override
-    public void keyPressed(KeyEvent e){
+    public void keyPressed(KeyEvent e) {
         /*
         37 izquierda
 		38 arriba
@@ -67,16 +67,16 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
 
         int pressed = e.getKeyCode();
 
-        if(pressed == 37){
+        if (pressed == 37) {
             usuario.moveB(true);
         }
-        if(pressed == 39){
+        if (pressed == 39) {
             usuario.moveF(true);
         }
-        if(pressed == 38){
+        if (pressed == 38) {
             usuario.jump();
         }
-        if(pressed == 32){
+        if (pressed == 32) {
             usuario.disparar();
         }
         this.repaint();
@@ -86,16 +86,17 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
     public void keyReleased(KeyEvent e) {
         int released = e.getKeyCode();
 
-        if(released == 37){
+        if (released == 37) {
             usuario.moveB(false);
         }
-        if(released == 39){
+        if (released == 39) {
             usuario.moveF(false);
         }
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 
     public void actionPerformed(ActionEvent evento) {
         /*
@@ -110,7 +111,7 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
                 reloj.stop();
             }
         }*/
-        if (evento.getSource() == relojGra){
+        if (evento.getSource() == relojGra) {
             usuario.gravity(obs);
             usuario.mover(obs);
             enemy.gravity(obs);

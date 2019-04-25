@@ -12,9 +12,9 @@ public abstract class Persona {
     protected boolean facingF;
     protected Proyectil bala;
 
-    public Persona(){
+    public Persona() {
         id = 0;
-        danio =5;
+        danio = 5;
         posicionX = 100;
         posicionY = 100;
         tamanio = 50;
@@ -25,7 +25,7 @@ public abstract class Persona {
         facingF = true;
     }
 
-    public Persona(int posicionX, int posicionY){
+    public Persona(int posicionX, int posicionY) {
         this.posicionX = posicionX;
         this.posicionY = posicionY;
         tamanio = 50;
@@ -39,7 +39,7 @@ public abstract class Persona {
 
     }
 
-    public Persona(int id, int posicionX, int posicionY, int tamanio){
+    public Persona(int id, int posicionX, int posicionY, int tamanio) {
         this.id = id;
         this.posicionX = posicionX;
         this.posicionY = posicionY;
@@ -52,7 +52,7 @@ public abstract class Persona {
     }
 
 
-    public Persona( int id, int danio, int posicionX, int posicionY, int tamanio, int tipo, int velocidadX, double velocidadY) {
+    public Persona(int id, int danio, int posicionX, int posicionY, int tamanio, int tipo, int velocidadX, double velocidadY) {
         this.id = id;
         this.danio = danio;
         this.posicionX = posicionX;
@@ -65,93 +65,96 @@ public abstract class Persona {
         facingF = true;
     }
 
-    public boolean disparar(){
-        if(!bala.isActive()){
+    public boolean disparar() {
+        if (!bala.isActive()) {
             bala.setDireccion(facingF);
-            bala.setPosicionX(posicionX+tamanio/2);
-            bala.setPosicionY(posicionY+tamanio/2);
+            bala.setPosicionX(posicionX + tamanio / 2);
+            bala.setPosicionY(posicionY + tamanio / 2);
             bala.setActive(true);
             return true;
         }
         return false;
     }
 
-    public boolean colisionDown(ArrayList<Obstaculos> obs){
+    public boolean colisionDown(ArrayList<Obstaculos> obs) {
         ListIterator itr = obs.listIterator();
         Obstaculos tmp;
-        while(itr.hasNext()){
-            tmp = (Obstaculos)itr.next();
-            if(posicionY+tamanio+velocidadY>tmp.getPosicionY() && posicionY+velocidadY<tmp.getPosicionY()+tmp.getTamanioY() && posicionX+tamanio>tmp.getPosicionX() && posicionX<tmp.getPosicionX()+tmp.getTamanioX()){
+        while (itr.hasNext()) {
+            tmp = (Obstaculos) itr.next();
+            if (posicionY + tamanio + velocidadY > tmp.getPosicionY() && posicionY + velocidadY < tmp.getPosicionY() + tmp.getTamanioY() && posicionX + tamanio > tmp.getPosicionX() && posicionX < tmp.getPosicionX() + tmp.getTamanioX()) {
                 return false;
             }
         }
         return true;
     }
-    protected boolean colisionLeft(ArrayList<Obstaculos> obs){
+
+    protected boolean colisionLeft(ArrayList<Obstaculos> obs) {
         ListIterator itr = obs.listIterator();
         Obstaculos tmp;
-        while(itr.hasNext()){
-            tmp = (Obstaculos)itr.next();
-            if((posicionX+velocidadX<tmp.getPosicionX()+tmp.getTamanioX() && posicionX+velocidadX>tmp.getPosicionX() && posicionY+tamanio>tmp.getPosicionY() && posicionY<tmp.getPosicionY()+tmp.getTamanioY()) || posicionX-velocidadX<0){
-                return true;
-            }
-        }
-        return false;
-    }
-    public boolean colisionRight(ArrayList<Obstaculos> obs){
-        ListIterator itr = obs.listIterator();
-        Obstaculos tmp;
-        while(itr.hasNext()){
-            tmp = (Obstaculos)itr.next();
-            if((posicionX+tamanio+velocidadX>tmp.getPosicionX() && posicionX+tamanio+velocidadX<tmp.getPosicionX()+tmp.getTamanioX() && posicionY+tamanio>tmp.getPosicionY() && posicionY<tmp.getPosicionY()+tmp.getTamanioY()) || posicionX+tamanio+velocidadX>=800){
+        while (itr.hasNext()) {
+            tmp = (Obstaculos) itr.next();
+            if ((posicionX + velocidadX < tmp.getPosicionX() + tmp.getTamanioX() && posicionX + velocidadX > tmp.getPosicionX() && posicionY + tamanio > tmp.getPosicionY() && posicionY < tmp.getPosicionY() + tmp.getTamanioY()) || posicionX - velocidadX < 0) {
                 return true;
             }
         }
         return false;
     }
 
-    public void moveF(boolean activ){
-        if(activ) {
+    public boolean colisionRight(ArrayList<Obstaculos> obs) {
+        ListIterator itr = obs.listIterator();
+        Obstaculos tmp;
+        while (itr.hasNext()) {
+            tmp = (Obstaculos) itr.next();
+            if ((posicionX + tamanio + velocidadX > tmp.getPosicionX() && posicionX + tamanio + velocidadX < tmp.getPosicionX() + tmp.getTamanioX() && posicionY + tamanio > tmp.getPosicionY() && posicionY < tmp.getPosicionY() + tmp.getTamanioY()) || posicionX + tamanio + velocidadX >= 800) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void moveF(boolean activ) {
+        if (activ) {
             facingF = true;
             setVelocidadX(VX);
-        } else{
+        } else {
             setVelocidadX(0);
         }
     }
-    public void moveB(boolean activ){
-        if(activ){
+
+    public void moveB(boolean activ) {
+        if (activ) {
             facingF = false;
             setVelocidadX(-VX);
-        } else{
+        } else {
             setVelocidadX(0);
         }
     }
 
-    public void mover(ArrayList<Obstaculos> obs){
+    public void mover(ArrayList<Obstaculos> obs) {
 
         //Rectangle u = new Rectangle(posicionX,posicionY,tamanio,tamanio);
-        if(!colisionLeft(obs) && !facingF){
+        if (!colisionLeft(obs) && !facingF) {
             posicionX += velocidadX;
-        }else if(!colisionRight(obs) && facingF){
+        } else if (!colisionRight(obs) && facingF) {
             posicionX += velocidadX;
-        } else{
+        } else {
             velocidadX = 0;
         }
 
     }
 
-    public void gravity(ArrayList<Obstaculos> obs){
-        posicionY+=velocidadY;
-        if(colisionDown(obs)) {
+    public void gravity(ArrayList<Obstaculos> obs) {
+        posicionY += velocidadY;
+        if (colisionDown(obs)) {
             velocidadY += GRAVITY;
         } else {
             velocidadY = 0;
-            jumping=0;
+            jumping = 0;
         }
     }
 
-    public void jump(){
-        if(jumping<2) {
+    public void jump() {
+        if (jumping < 2) {
             setJumping(jumping + 1);
             setVelocidadY(-5);
         }

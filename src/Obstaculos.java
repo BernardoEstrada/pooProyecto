@@ -12,19 +12,18 @@ public class Obstaculos {
         this.tamanioY = tamanioY;
     }
 
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
         g.setColor(Color.BLACK);
-        g.fillRect(posicionX,posicionY,tamanioX,tamanioY);
+        g.fillRect(posicionX, posicionY, tamanioX, tamanioY);
     }
 
     @Override
     public boolean equals(Object o) {
-        Obstaculos that = (Obstaculos)o;
-        if( (that.posicionY + tamanioY == this.posicionY && that.posicionX  <= this.posicionX + tamanioX) || (that.posicionY + tamanioY == this.posicionY && that.posicionX > this.posicionX)) {
+        Obstaculos that = (Obstaculos) o;
+        if ((that.posicionY + tamanioY == this.posicionY && that.posicionX <= this.posicionX + tamanioX) || (that.posicionY + tamanioY == this.posicionY && that.posicionX > this.posicionX)) {
             return true;
         } else return false;
     }
-
 
 
     public int getId() {

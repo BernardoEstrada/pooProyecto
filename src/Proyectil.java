@@ -36,10 +36,10 @@ public class Proyectil implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent evento) {
-        if(evento.getSource() == reloj) {
+        if (evento.getSource() == reloj) {
             if (active) {
                 avanzar();
-                if(posicionX+ velocidadX >= 800 || posicionX - velocidadX <= 0){
+                if (posicionX + velocidadX >= 800 || posicionX - velocidadX <= 0) {
                     setActive(false);
                 }
             }
@@ -85,9 +85,9 @@ public class Proyectil implements ActionListener {
 
     public void setActive(boolean active) {
         this.active = active;
-        if(active){
+        if (active) {
             reloj.start();
-        } else{
+        } else {
             reloj.stop();
         }
     }

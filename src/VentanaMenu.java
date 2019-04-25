@@ -11,28 +11,26 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
-public class VentanaMenu extends JFrame implements ActionListener{
+public class VentanaMenu extends JFrame implements ActionListener {
     private JPanel panelS;
     private JButton iniciar;
     private Canvas fondo;
     private int height, width;
 
 
-
-
-    public VentanaMenu( int height, int width){
+    public VentanaMenu(int height, int width) {
         super("Proyecto Final ");
-        setSize(width,height);
+        setSize(width, height);
         setLocationRelativeTo(null);
 
         this.setLayout(new BorderLayout());
-        panelS=new JPanel();
-        iniciar= new JButton("Start");
+        panelS = new JPanel();
+        iniciar = new JButton("Start");
 
         iniciar.addActionListener(this);
 
 
-        iniciar.setPreferredSize(new Dimension(150,60));
+        iniciar.setPreferredSize(new Dimension(150, 60));
 
 
         panelS.setLayout(new FlowLayout());
@@ -41,23 +39,24 @@ public class VentanaMenu extends JFrame implements ActionListener{
         panelS.setForeground(Color.MAGENTA);
         panelS.add(iniciar);
 
-        fondo=new FondoMenu("Por Gloria");
-        this.add(fondo,BorderLayout.CENTER);
-        this.add(panelS,BorderLayout.SOUTH);
+        fondo = new FondoMenu("Por Gloria");
+        this.add(fondo, BorderLayout.CENTER);
+        this.add(panelS, BorderLayout.SOUTH);
 
         this.height = height;
         this.width = width;
 
     }
+
     @Override
     public void actionPerformed(ActionEvent evento) {
         // TODO Auto-generated method stub
-        if(evento.getSource()==iniciar){
-            MiVentana mv =new MiVentana(height,width);
+        if (evento.getSource() == iniciar) {
+            MiVentana mv = new MiVentana(height, width);
             mv.setVisible(true);
             mv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.setVisible(false);
-        }else{
+        } else {
             System.exit(0);
 
         }
