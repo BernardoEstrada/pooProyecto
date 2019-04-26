@@ -12,7 +12,7 @@ import java.util.Random;
 public class MiCanvas extends Canvas implements KeyListener, ActionListener {
     private Jugador usuario;
     private Enemigo enemy;
-    private Timer relojGra;
+    private Timer relojUpdate;
     ArrayList<Obstaculos> obs;
 
     private BufferedImage imagen;
@@ -30,10 +30,10 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         obs.add(new Obstaculos(3, 300, 200, 100, 100));
         obs.add(new Obstaculos(4, 500, 150, 100, 50));
         addKeyListener(this);
-        relojGra = new Timer(10, this);
+        relojUpdate = new Timer(10, this);
         imagen = new BufferedImage(800, 400, BufferedImage.TYPE_INT_RGB);
 
-        relojGra.start();
+        relojUpdate.start();
     }
 
     public void paint(Graphics g) {
@@ -47,12 +47,20 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         usuario.paint(gra);
         enemy.paint(gra);
 
-        relojGra.start();
+        relojUpdate.start();
 
         g.drawImage(imagen, 0, 0, null);
     }
 
     public void update(Graphics g) {
+
+        usuario.gravity(obs);
+        usuario.mover(obs);
+        enemy.gravity(obs);
+        if(enemy.impactoProyectil(usuario.getBala())){
+            enemy.die();
+            usuario.getBala().setActive(false);
+        }
         paint(g);
     }
 
@@ -99,24 +107,9 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
     }
 
     public void actionPerformed(ActionEvent evento) {
-        /*
-        if(evento.getSource() == reloj) {
-                if(usuario.getBala().getPosicionX()>enemy.getPosicionX() && usuario.getBala().getPosicionX()<enemy.getPosicionX()+enemy.getTamanio() && usuario.getBala().getPosicionY()>enemy.getPosicionY() && usuario.getBala().getPosicionY()<enemy.getPosicionY()+enemy.getTamanio()){
-                    Random random = new Random();
-                    enemy = new Enemigo(random.nextInt(750),1);
-                    reloj.stop();
-                    usuario.getBala().setActive(false);
-                }
-            } else {
-                reloj.stop();
-            }
-        }*/
-        if (evento.getSource() == relojGra) {
-            usuario.gravity(obs);
-            usuario.mover(obs);
-            enemy.gravity(obs);
+        if (evento.getSource() == relojUpdate) {
+            repaint();
         }
-        repaint();
 
     }
 

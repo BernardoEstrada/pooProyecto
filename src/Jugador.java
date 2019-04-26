@@ -18,6 +18,11 @@ public class Jugador extends Persona {
         bala = new Proyectil(10, this.getPosicionX(), this.getPosicionY());
     }
 
+    @Override
+    public void die() {
+
+    }
+
     public void paint(Graphics g) {
         if (facingF) {
             g.setColor(Color.BLUE);

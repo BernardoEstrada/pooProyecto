@@ -65,6 +65,12 @@ public abstract class Persona {
         facingF = true;
     }
 
+    public boolean impactoProyectil(Proyectil pro){
+        return (pro.getPosicionX()>posicionX && pro.getPosicionX()<posicionX+tamanio && pro.getPosicionY()>posicionY && pro.getPosicionY()<posicionY+tamanio);
+    }
+
+    public abstract void die();
+
     public boolean disparar() {
         if (!bala.isActive()) {
             bala.setDireccion(facingF);
@@ -156,7 +162,7 @@ public abstract class Persona {
     public void jump() {
         if (jumping < 2) {
             setJumping(jumping + 1);
-            setVelocidadY(-5);
+            setVelocidadY(-6);
         }
     }
 
