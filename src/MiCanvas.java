@@ -57,9 +57,12 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         usuario.gravity(obs);
         usuario.mover(obs);
         enemy.gravity(obs);
-        if(enemy.impactoProyectil(usuario.getBala())){
-            enemy.die();
+        if(usuario.getBala().colision(obs)){
             usuario.getBala().setActive(false);
+        }
+        if(enemy.impactoProyectil(usuario.getBala())){
+            usuario.getBala().setActive(false);
+            enemy.die();
         }
         paint(g);
     }

@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.Random;
 
 public class Proyectil implements ActionListener {
@@ -39,12 +41,21 @@ public class Proyectil implements ActionListener {
         if (evento.getSource() == reloj) {
             if (active) {
                 avanzar();
-                if (posicionX + velocidadX >= 800 || posicionX - velocidadX <= 0) {
-                    setActive(false);
-                }
             }
         }
 
+    }
+
+    public boolean colision(ArrayList<Obstaculos> obs) {
+        ListIterator itr = obs.listIterator();
+        Obstaculos tmp;
+        while (itr.hasNext()) {
+            tmp = (Obstaculos) itr.next();
+            if((posicionX<tmp.getPosicionX()+tmp.getTamanioX() && posicionX+radio>tmp.getPosicionX() && (posicionY<tmp.getPosicionY()+tmp.getTamanioY() && posicionY+radio>tmp.getPosicionY())) || (posicionX + radio + velocidadX >= 800) || (posicionX + velocidadX < 0)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int getPosicionX() {

@@ -94,7 +94,7 @@ public abstract class Persona {
         return true;
     }
 
-    protected boolean colisionLeft(ArrayList<Obstaculos> obs) {
+    public boolean colisionLeft(ArrayList<Obstaculos> obs) {
         ListIterator itr = obs.listIterator();
         Obstaculos tmp;
         while (itr.hasNext()) {
