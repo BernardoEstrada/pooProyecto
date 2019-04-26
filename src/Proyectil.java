@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.ListIterator;
-import java.util.Random;
 
 public class Proyectil implements ActionListener {
     private int posicionX, posicionY, radio, velocidadX;
@@ -109,5 +108,18 @@ public class Proyectil implements ActionListener {
 
     public void setDireccion(boolean direccion) {
         this.direccion = direccion;
+    }
+
+    @Override
+    public String toString() {
+        return "Proyectil{" +
+                "posicionX=" + posicionX +
+                ", posicionY=" + posicionY +
+                ", radio=" + radio +
+                ", velocidadX=" + velocidadX +
+                ", active=" + active +
+                ", direccion=" + direccion +
+                ", reloj=" + reloj +
+                '}';
     }
 }

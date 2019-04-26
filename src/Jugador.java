@@ -1,8 +1,4 @@
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class Jugador extends Persona {
     private String nombre;
@@ -15,7 +11,6 @@ public class Jugador extends Persona {
     public Jugador(int id, int posicionX, int posicionY, int tamanio, String nombre) {
         super(id, posicionX, posicionY, tamanio);
         this.nombre = nombre;
-        bala = new Proyectil(10, this.getPosicionX(), this.getPosicionY());
     }
 
     @Override

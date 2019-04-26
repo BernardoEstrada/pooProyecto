@@ -23,6 +23,7 @@ public abstract class Persona {
         velocidadY = 0;
         jumping = 0;
         facingF = true;
+        bala = new Proyectil(10, this.getPosicionX(), this.getPosicionY());
     }
 
     public Persona(int posicionX, int posicionY) {
@@ -35,6 +36,7 @@ public abstract class Persona {
         jumping = 0;
         facingF = true;
         id = 0;
+        bala = new Proyectil(10, this.getPosicionX(), this.getPosicionY());
 
 
     }
@@ -49,6 +51,7 @@ public abstract class Persona {
         velocidadY = 0;
         jumping = 0;
         facingF = true;
+        bala = new Proyectil(10, this.getPosicionX(), this.getPosicionY());
     }
 
 
@@ -63,6 +66,7 @@ public abstract class Persona {
         this.velocidadY = velocidadY;
         jumping = 0;
         facingF = true;
+        bala = new Proyectil(10, this.getPosicionX(), this.getPosicionY());
     }
 
     public boolean impactoProyectil(Proyectil pro){

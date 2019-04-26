@@ -7,7 +7,6 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.ListIterator;
-import java.util.Random;
 
 public class MiCanvas extends Canvas implements KeyListener, ActionListener {
     private Jugador usuario;
@@ -57,6 +56,7 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         usuario.gravity(obs);
         usuario.mover(obs);
         enemy.gravity(obs);
+
         if(usuario.getBala().colision(obs)){
             usuario.getBala().setActive(false);
         }
@@ -64,6 +64,16 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
             usuario.getBala().setActive(false);
             enemy.die();
         }
+
+        enemy.setFacingF(enemy.getPosicionX()<usuario.getPosicionX());
+        if(enemy.getBala().colision(obs)){
+            enemy.getBala().setActive(false);
+        }
+        if(usuario.impactoProyectil(enemy.getBala())){
+            enemy.getBala().setActive(false);
+            usuario.die();
+        }
+
         paint(g);
     }
 
