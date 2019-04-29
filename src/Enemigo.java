@@ -37,8 +37,7 @@ public class Enemigo extends Persona implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == disp){
-            if(new Random().nextBoolean()){ jump(); }
-            System.out.println(bala.toString());
+            //if(new Random().nextBoolean()){ jump(); }
             disparar();
         }
     }
