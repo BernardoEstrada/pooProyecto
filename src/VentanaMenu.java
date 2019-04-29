@@ -40,12 +40,12 @@ public class VentanaMenu extends JFrame implements ActionListener {
         panelS.add(iniciar);
 
         fondo = new FondoMenu("Por Gloria");
-        this.add(fondo, BorderLayout.CENTER);
-        this.add(panelS, BorderLayout.SOUTH);
 
         this.height = height;
         this.width = width;
 
+        this.add(fondo, BorderLayout.CENTER);
+        this.add(panelS, BorderLayout.SOUTH);
     }
 
     @Override

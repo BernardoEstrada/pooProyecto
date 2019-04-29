@@ -70,7 +70,7 @@ public abstract class Persona {
     }
 
     public boolean impactoProyectil(Proyectil pro){
-        return (pro.getPosicionX()>posicionX && pro.getPosicionX()<posicionX+tamanio && pro.getPosicionY()>posicionY && pro.getPosicionY()<posicionY+tamanio);
+        return (pro.getPosicionX()>posicionX && pro.getPosicionX()<posicionX+tamanio && pro.getPosicionY()>posicionY && pro.getPosicionY()<posicionY+tamanio && pro.isActive());
     }
 
     public abstract void die();
@@ -103,7 +103,7 @@ public abstract class Persona {
         Obstaculos tmp;
         while (itr.hasNext()) {
             tmp = (Obstaculos) itr.next();
-            if ((posicionX + velocidadX < tmp.getPosicionX() + tmp.getTamanioX() && posicionX + velocidadX > tmp.getPosicionX() && posicionY + tamanio > tmp.getPosicionY() && posicionY < tmp.getPosicionY() + tmp.getTamanioY()) || posicionX - velocidadX < 0) {
+            if ((posicionX + velocidadX < tmp.getPosicionX() + tmp.getTamanioX() && posicionX + velocidadX > tmp.getPosicionX() && posicionY + tamanio > tmp.getPosicionY() && posicionY < tmp.getPosicionY() + tmp.getTamanioY()) || posicionX + velocidadX < 0) {
                 return true;
             }
         }
@@ -115,7 +115,7 @@ public abstract class Persona {
         Obstaculos tmp;
         while (itr.hasNext()) {
             tmp = (Obstaculos) itr.next();
-            if ((posicionX + tamanio + velocidadX > tmp.getPosicionX() && posicionX + tamanio + velocidadX < tmp.getPosicionX() + tmp.getTamanioX() && posicionY + tamanio > tmp.getPosicionY() && posicionY < tmp.getPosicionY() + tmp.getTamanioY()) || posicionX + tamanio + velocidadX >= 800) {
+            if ((posicionX + tamanio + velocidadX > tmp.getPosicionX() && posicionX + tamanio + velocidadX < tmp.getPosicionX() + tmp.getTamanioX() && posicionY + tamanio > tmp.getPosicionY() && posicionY < tmp.getPosicionY() + tmp.getTamanioY()) || posicionX + tamanio + VX > 1200) {
                 return true;
             }
         }

@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 import java.util.Random;
 import javax.swing.*;
 
@@ -29,14 +30,14 @@ public class Enemigo extends Persona implements ActionListener {
     @Override
     public void die() {
         Random random = new Random();
-        this.posicionX = random.nextInt(750);
+        this.posicionX = random.nextInt(1150);
         this.posicionY = 1;
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == disp){
+        if (e.getSource() == disp) {
             //if(new Random().nextBoolean()){ jump(); }
             disparar();
         }
@@ -55,5 +56,10 @@ public class Enemigo extends Persona implements ActionListener {
             g.fillRect(posicionX, posicionY + tamanio / 2, tamanio / 2, tamanio / 10);
         }
         bala.paint(g);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return (o instanceof Enemigo && ((Enemigo) o).getId()==this.id);
     }
 }

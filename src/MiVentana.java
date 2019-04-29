@@ -7,7 +7,7 @@ public class MiVentana extends JFrame {
     public MiVentana() {
         super();
         setTitle("Proyecto Final");
-        setSize(500, 500);
+        setSize(1200, 600);
         setLocationRelativeTo(null);
         MiCanvas canvas = new MiCanvas();
         setLayout(new BorderLayout());

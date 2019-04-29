@@ -15,7 +15,7 @@ public class Jugador extends Persona {
 
     @Override
     public void die() {
-
+        System.out.println("You dead bro");
     }
 
     public void paint(Graphics g) {

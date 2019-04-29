@@ -50,7 +50,7 @@ public class Proyectil implements ActionListener {
         Obstaculos tmp;
         while (itr.hasNext()) {
             tmp = (Obstaculos) itr.next();
-            if((posicionX<tmp.getPosicionX()+tmp.getTamanioX() && posicionX+radio>tmp.getPosicionX() && (posicionY<tmp.getPosicionY()+tmp.getTamanioY() && posicionY+radio>tmp.getPosicionY())) || (posicionX + radio + velocidadX >= 800) || (posicionX + velocidadX < 0)) {
+            if((posicionX<tmp.getPosicionX()+tmp.getTamanioX() && posicionX+radio>tmp.getPosicionX() && (posicionY<tmp.getPosicionY()+tmp.getTamanioY() && posicionY+radio>tmp.getPosicionY())) || (posicionX + radio + velocidadX >= 1200) || (posicionX + velocidadX < 0)) {
                 return true;
             }
         }
