@@ -30,9 +30,11 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         enemigos.add(new Enemigo(2, 50, 600, 50, 50, 1, 10, 10));
         //enemy = new Enemigo(1,50,200,50, 50, 1, 10, 10);
 
-        obs.add(new Obstaculos(2, 0, 500, 1200, 100));
-        obs.add(new Obstaculos(3, 300, 400, 100, 100));
-        obs.add(new Obstaculos(4, 500, 350, 100, 50));
+        obs.add(new Obstaculos(1, 0, 500, 1200, 100));
+        obs.add(new Obstaculos(2, 300, 400, 100, 100));
+        obs.add(new Obstaculos(3, 500, 350, 100, 50));
+
+
         addKeyListener(this);
         relojUpdate = new Timer(10, this);
         imagen = new BufferedImage(1200, 600, BufferedImage.TYPE_INT_RGB);
