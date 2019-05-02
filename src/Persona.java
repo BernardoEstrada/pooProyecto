@@ -6,7 +6,7 @@ public abstract class Persona {
 
     protected final static int VX = 2, VY = 10;
 
-    protected int id, danio, posicionX, posicionY, tamanio, tipo, velocidadX, jumping;
+    protected int id, danio, posicionX, posicionY, tamanio, velocidadX, jumping;
     protected double velocidadY;
     protected final double GRAVITY = 0.2;
     protected boolean facingF;
@@ -18,7 +18,6 @@ public abstract class Persona {
         posicionX = 100;
         posicionY = 100;
         tamanio = 50;
-        tipo = 1;
         velocidadX = 0;
         velocidadY = 0;
         jumping = 0;
@@ -30,7 +29,6 @@ public abstract class Persona {
         this.posicionX = posicionX;
         this.posicionY = posicionY;
         tamanio = 50;
-        tipo = 1;
         velocidadX = 0;
         velocidadY = 0;
         jumping = 0;
@@ -55,15 +53,14 @@ public abstract class Persona {
     }
 
 
-    public Persona(int id, int danio, int posicionX, int posicionY, int tamanio, int tipo, int velocidadX, double velocidadY) {
+    public Persona(int id, int danio, int posicionX, int posicionY, int tamanio) {
         this.id = id;
         this.danio = danio;
         this.posicionX = posicionX;
         this.posicionY = posicionY;
         this.tamanio = tamanio;
-        this.tipo = tipo;
-        this.velocidadX = velocidadX;
-        this.velocidadY = velocidadY;
+        this.velocidadX = VX;
+        this.velocidadY = VY;
         jumping = 0;
         facingF = true;
         bala = new Proyectil(10, this.getPosicionX(), this.getPosicionY());
@@ -143,9 +140,7 @@ public abstract class Persona {
     public void mover(ArrayList<Obstaculos> obs) {
 
         //Rectangle u = new Rectangle(posicionX,posicionY,tamanio,tamanio);
-        if (!colisionLeft(obs) && !facingF) {
-            posicionX += velocidadX;
-        } else if (!colisionRight(obs) && facingF) {
+        if ((!colisionLeft(obs) && !facingF) || (!colisionRight(obs) && facingF)) {
             posicionX += velocidadX;
         } else {
             velocidadX = 0;
@@ -210,14 +205,6 @@ public abstract class Persona {
 
     public void setTamanio(int tamanio) {
         this.tamanio = tamanio;
-    }
-
-    public int getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
     }
 
     public int getVelocidadX() {

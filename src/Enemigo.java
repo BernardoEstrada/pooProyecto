@@ -1,29 +1,34 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.Objects;
 import java.util.Random;
 import javax.swing.*;
 
 public class Enemigo extends Persona implements ActionListener {
-    private final static int dispDelay = 3000;
+    private int velDisp;
     private Timer disp;
 
     public Enemigo() {
         super();
-        disp = new Timer(dispDelay, this);
+        this.velDisp = 3000;
+        disp = new Timer(velDisp, this);
         disp.start();
     }
 
     public Enemigo(int posicionX, int posicionY) {
         super(posicionX, posicionY);
-        disp = new Timer(dispDelay, this);
+        this.velDisp = 3000;
+        disp = new Timer(velDisp, this);
         disp.start();
     }
 
-    public Enemigo(int id, int danio, int posicionX, int posicionY, int tamanio, int tipo, int velocidadX, int velocidadY) {
-        super(id, danio, posicionX, posicionY, tamanio, tipo, velocidadX, velocidadY);
-        disp = new Timer(dispDelay, this);
+    public Enemigo(int id, int danio, int posicionX, int posicionY, int tamanio, int velDisp) {
+        super(id, danio, posicionX, posicionY, tamanio);
+        this.velDisp = velDisp;
+        disp = new Timer(velDisp*1000, this);
         disp.start();
     }
 
@@ -56,6 +61,26 @@ public class Enemigo extends Persona implements ActionListener {
             g.fillRect(posicionX, posicionY + tamanio / 2, tamanio / 2, tamanio / 10);
         }
         bala.paint(g);
+    }
+
+    public void mover(ArrayList<Obstaculos> obs){
+        posicionX += velocidadX;
+        if (onEdge(obs)) {
+            velocidadX = -velocidadX;
+        }
+    }
+
+    public boolean onEdge(ArrayList<Obstaculos> obs){
+        ListIterator itr = obs.listIterator();
+        Obstaculos tmp;
+        while (itr.hasNext()) {
+            tmp = (Obstaculos) itr.next();
+            if (posicionY+tamanio==tmp.getPosicionY() && ((posicionX+tamanio/2)<=tmp.getPosicionX() || (posicionX+tamanio/2)>=tmp.getPosicionX()+tmp.getTamanioX())){
+                System.out.println("sad");
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

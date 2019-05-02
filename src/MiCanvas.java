@@ -26,8 +26,8 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         enemigos = new ArrayList<>(5);
         usuario = new Jugador(1, 50, 50, 50, "Martin");
 
-        enemigos.add(new Enemigo(1, 50, 525, 50, 50, 1, 10, 10));
-        enemigos.add(new Enemigo(2, 50, 600, 50, 50, 1, 10, 10));
+        enemigos.add(new Enemigo(1, 50, 525, 50, 50, 3));
+        enemigos.add(new Enemigo(2, 50, 100, 50, 50, 1));
         //enemy = new Enemigo(1,50,200,50, 50, 1, 10, 10);
 
         obs.add(new Obstaculos(1, 0, 500, 1200, 100));
@@ -66,11 +66,11 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         usuario.mover(obs);
 
         //System.out.println(usuario.getPosicionX() + ", " + usuario.getVelocidadX());
-
+/*
         if(usuario.getPosicionX()==1150){
             nextLevel();
         }
-
+*/
         if(usuario.getBala().colision(obs)){
             usuario.getBala().setActive(false);
         }
@@ -80,6 +80,7 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         while (itrE.hasNext()) {
             Enemigo tmp = itrE.next();
             tmp.gravity(obs);
+            tmp.mover(obs);
             if(tmp.impactoProyectil(usuario.getBala())){
                 usuario.getBala().setActive(false);
                 tmp.die();

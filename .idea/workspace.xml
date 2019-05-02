@@ -11,15 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ed762488-71d7-4f7f-b243-e9258667d72e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto/Enemigo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto/Enemigo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto/Jugador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto/Jugador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto/MiCanvas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto/MiCanvas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto/MiVentana.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto/MiVentana.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto/Persona.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto/Persona.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto/Proyectil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto/Proyectil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto/VentanaMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto/VentanaMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Enemigo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enemigo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Jugador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MiCanvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MiCanvas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Persona.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,8 +55,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Jugador.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="115">
+              <caret line="5" column="80" selection-start-line="5" selection-start-column="80" selection-end-line="5" selection-end-column="80" />
               <folding>
                 <element signature="e#561#562#0" expanded="true" />
                 <element signature="e#611#612#0" expanded="true" />
@@ -73,34 +68,33 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Persona.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1610">
-              <caret line="72" column="174" selection-start-line="72" selection-start-column="174" selection-end-line="72" selection-end-column="174" />
+            <state relative-caret-position="161">
+              <caret line="86" selection-start-line="86" selection-end-line="94" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Enemigo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1242">
-              <caret line="59" selection-start-line="59" selection-end-line="59" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1841#1842#0" expanded="true" />
-                <element signature="e#1920#1921#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Enemigo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="188">
+              <caret line="77" column="102" selection-start-line="77" selection-start-column="102" selection-end-line="77" selection-end-column="102" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2643#2644#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MiCanvas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="28" column="33" lean-forward="true" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+            <state relative-caret-position="271">
+              <caret line="95" column="13" selection-start-line="95" selection-start-column="13" selection-end-line="95" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -153,10 +147,10 @@
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Proyectil.java" />
         <option value="$PROJECT_DIR$/src/VentanaMenu.java" />
-        <option value="$PROJECT_DIR$/src/Enemigo.java" />
         <option value="$PROJECT_DIR$/src/Jugador.java" />
         <option value="$PROJECT_DIR$/src/Persona.java" />
         <option value="$PROJECT_DIR$/src/MiCanvas.java" />
+        <option value="$PROJECT_DIR$/src/Enemigo.java" />
       </list>
     </option>
   </component>
@@ -178,8 +172,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -196,6 +188,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -272,7 +266,8 @@
       <workItem from="1556555016913" duration="4209000" />
       <workItem from="1556573275949" duration="779000" />
       <workItem from="1556574206302" duration="8000" />
-      <workItem from="1556590966104" duration="1258000" />
+      <workItem from="1556590966104" duration="1571000" />
+      <workItem from="1556641074301" duration="4567000" />
     </task>
     <task id="LOCAL-00001" summary="&#10;sdfg">
       <created>1556129477879</created>
@@ -428,17 +423,24 @@
       <option name="project" value="LOCAL" />
       <updated>1556561241370</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="test">
+      <created>1556596387525</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1556596387525</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33804000" />
+    <option name="totallyTimeSpent" value="38684000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1098081" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1108742" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -552,36 +554,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Jugador.java">
+    <entry file="file://$PROJECT_DIR$/src/VentanaMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#561#562#0" expanded="true" />
-            <element signature="e#611#612#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Persona.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1610">
-          <caret line="72" column="174" selection-start-line="72" selection-start-column="174" selection-end-line="72" selection-end-column="174" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Enemigo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1242">
-          <caret line="59" selection-start-line="59" selection-end-line="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1841#1842#0" expanded="true" />
-            <element signature="e#1920#1921#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="897">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
         </state>
       </provider>
     </entry>
@@ -592,19 +568,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/VentanaMenu.java">
+    <entry file="file://$PROJECT_DIR$/src/Jugador.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="897">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        <state relative-caret-position="115">
+          <caret line="5" column="80" selection-start-line="5" selection-start-column="80" selection-end-line="5" selection-end-column="80" />
+          <folding>
+            <element signature="e#561#562#0" expanded="true" />
+            <element signature="e#611#612#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Persona.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="86" selection-start-line="86" selection-end-line="94" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MiCanvas.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="28" column="33" lean-forward="true" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+        <state relative-caret-position="271">
+          <caret line="95" column="13" selection-start-line="95" selection-start-column="13" selection-end-line="95" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Enemigo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="77" column="102" selection-start-line="77" selection-start-column="102" selection-end-line="77" selection-end-column="102" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2643#2644#0" expanded="true" />
           </folding>
         </state>
       </provider>

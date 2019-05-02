@@ -3,8 +3,8 @@ import java.awt.*;
 public class Jugador extends Persona {
     private String nombre;
 
-    public Jugador(int id, int danio, int posicionX, int posicionY, int tamanio, int tipo, int velocidadX, int velocidadY, String nombre) {
-        super(id, danio, posicionX, posicionY, tamanio, tipo, velocidadX, velocidadY);
+    public Jugador(int id, int danio, int posicionX, int posicionY, int tamanio, String nombre) {
+        super(id, danio, posicionX, posicionY, tamanio);
         this.nombre = nombre;
     }
 
