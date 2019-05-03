@@ -64,10 +64,12 @@ public class Enemigo extends Persona implements ActionListener {
     }
 
     public void mover(ArrayList<Obstaculos> obs){
-        posicionX += velocidadX;
-        if (onEdge(obs)) {
-            velocidadX = -velocidadX;
-        }
+        //if(velocidadY<=0.2) {
+            posicionX += velocidadX;
+            if (onEdge(obs) ) {
+                velocidadX = -velocidadX;
+            }
+        //}
     }
 
     public boolean onEdge(ArrayList<Obstaculos> obs){
@@ -75,12 +77,11 @@ public class Enemigo extends Persona implements ActionListener {
         Obstaculos tmp;
         while (itr.hasNext()) {
             tmp = (Obstaculos) itr.next();
-            if (posicionY+tamanio==tmp.getPosicionY() && ((posicionX+tamanio/2)<=tmp.getPosicionX() || (posicionX+tamanio/2)>=tmp.getPosicionX()+tmp.getTamanioX())){
-                System.out.println("sad");
+            if (posicionY+tamanio==tmp.getPosicionY() && ((posicionX+tamanio/2)<tmp.getPosicionX() || (posicionX+tamanio/2)>tmp.getPosicionX()+tmp.getTamanioX())){
                 return true;
             }
         }
-        return false;
+        return (colisionRight(obs) || colisionLeft(obs));
     }
 
     @Override

@@ -26,8 +26,8 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         enemigos = new ArrayList<>(5);
         usuario = new Jugador(1, 50, 50, 50, "Martin");
 
-        enemigos.add(new Enemigo(1, 50, 525, 50, 50, 3));
-        enemigos.add(new Enemigo(2, 50, 100, 50, 50, 1));
+        enemigos.add(new Enemigo(1, 50, 525, 1, 50, 3));
+        enemigos.add(new Enemigo(2, 50, 300, 1, 50, 1));
         //enemy = new Enemigo(1,50,200,50, 50, 1, 10, 10);
 
         obs.add(new Obstaculos(1, 0, 500, 1200, 100));
