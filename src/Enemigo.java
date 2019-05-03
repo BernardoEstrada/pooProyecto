@@ -3,7 +3,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.ListIterator;
-import java.util.Objects;
 import java.util.Random;
 import javax.swing.*;
 
@@ -28,7 +27,7 @@ public class Enemigo extends Persona implements ActionListener {
     public Enemigo(int id, int danio, int posicionX, int posicionY, int tamanio, int velDisp) {
         super(id, danio, posicionX, posicionY, tamanio);
         this.velDisp = velDisp;
-        disp = new Timer(velDisp*1000, this);
+        disp = new Timer(velDisp * 1000, this);
         disp.start();
     }
 
@@ -63,21 +62,21 @@ public class Enemigo extends Persona implements ActionListener {
         bala.paint(g);
     }
 
-    public void mover(ArrayList<Obstaculos> obs){
-        //if(velocidadY<=0.2) {
+    public void mover(ArrayList<Obstaculos> obs) {
+        if (velocidadY <= 0.2) {
             posicionX += velocidadX;
-            if (onEdge(obs) ) {
+            if (onEdge(obs)) {
                 velocidadX = -velocidadX;
             }
-        //}
+        }
     }
 
-    public boolean onEdge(ArrayList<Obstaculos> obs){
+    private boolean onEdge(ArrayList<Obstaculos> obs) {
         ListIterator itr = obs.listIterator();
         Obstaculos tmp;
         while (itr.hasNext()) {
             tmp = (Obstaculos) itr.next();
-            if (posicionY+tamanio==tmp.getPosicionY() && ((posicionX+tamanio/2)<tmp.getPosicionX() || (posicionX+tamanio/2)>tmp.getPosicionX()+tmp.getTamanioX())){
+            if (posicionY + tamanio == tmp.getPosicionY() && ((posicionX + tamanio / 2) < tmp.getPosicionX() || (posicionX + tamanio / 2) > tmp.getPosicionX() + tmp.getTamanioX())) {
                 return true;
             }
         }
@@ -86,6 +85,6 @@ public class Enemigo extends Persona implements ActionListener {
 
     @Override
     public boolean equals(Object o) {
-        return (o instanceof Enemigo && ((Enemigo) o).getId()==this.id);
+        return (o instanceof Enemigo && ((Enemigo) o).getId() == this.id);
     }
 }
