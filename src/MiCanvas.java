@@ -26,8 +26,8 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         enemigos = new ArrayList<>(5);
         usuario = new Jugador(1, 50, 50, 50, "Martin");
 
-        enemigos.add(new Enemigo(1, 50, 525, 1, 50, 3));
-        enemigos.add(new Enemigo(2, 50, 300, 1, 50, 1));
+        enemigos.add(new Enemigo(1, 50, 525, 1, 50, 3, 3));
+        enemigos.add(new Enemigo(2, 50, 300, 1, 50, 1, 2));
         //enemy = new Enemigo(1,50,200,50, 50, 1, 10, 10);
 
         obs.add(new Obstaculos(1, 0, 500, 1200, 100));
@@ -66,16 +66,17 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         usuario.mover(obs);
 
         //System.out.println(usuario.getPosicionX() + ", " + usuario.getVelocidadX());
-/*
+
         if(usuario.getPosicionX()==1150){
-            nextLevel();
+            //nextLevel();
+            System.out.println(enemigos.size());
         }
-*/
+
         if(usuario.getBala().colision(obs)){
             usuario.getBala().setActive(false);
         }
 
-
+        ArrayList<Enemigo> remove = new ArrayList<>(5);
         ListIterator<Enemigo> itrE = enemigos.listIterator();
         while (itrE.hasNext()) {
             Enemigo tmp = itrE.next();
@@ -83,16 +84,10 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
             tmp.mover(obs);
             if(tmp.impactoProyectil(usuario.getBala())){
                 usuario.getBala().setActive(false);
-                tmp.die();
+                //tmp.die();
+                remove.add(tmp);
             }
-            ListIterator<Enemigo> itrE2 = enemigos.listIterator();
-            while (itrE2.hasNext()) {
-                Enemigo tmp2 = itrE2.next();
-                if(tmp.impactoProyectil(tmp2.getBala()) && !tmp.equals(tmp2)) {
-                    tmp2.getBala().setActive(false);
-                    tmp.die();
-                }
-            }
+
             tmp.setFacingF(tmp.getPosicionX()<usuario.getPosicionX());
 
             if(tmp.getBala().colision(obs)){
@@ -104,8 +99,14 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
             }
         }
 
+        ListIterator<Enemigo> itrR = remove.listIterator();
+        while (itrR.hasNext()) {
+            enemigos.remove(itrR.next());
+        }
 
-
+        if(usuario.getVida()<=0){
+            relojUpdate.stop();
+        }
 
         paint(g);
     }
@@ -126,22 +127,23 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
 		39 derecha
 		40 abajo
          */
+        if(relojUpdate.isRunning()) {
+            int pressed = e.getKeyCode();
 
-        int pressed = e.getKeyCode();
-
-        if (pressed == 37) {
-            usuario.moveB(true);
+            if (pressed == 37) {
+                usuario.moveB(true);
+            }
+            if (pressed == 39) {
+                usuario.moveF(true);
+            }
+            if (pressed == 38) {
+                usuario.jump();
+            }
+            if (pressed == 32) {
+                usuario.disparar();
+            }
+            this.repaint();
         }
-        if (pressed == 39) {
-            usuario.moveF(true);
-        }
-        if (pressed == 38) {
-            usuario.jump();
-        }
-        if (pressed == 32) {
-            usuario.disparar();
-        }
-        this.repaint();
     }
 
     @Override
@@ -164,7 +166,6 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         if (evento.getSource() == relojUpdate) {
             repaint();
         }
-
     }
 
 }

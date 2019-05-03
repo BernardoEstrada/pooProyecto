@@ -4,11 +4,11 @@ import java.util.ListIterator;
 
 public abstract class Persona {
 
-    protected final static int VX = 2, VY = 10;
+    protected final int VY = 10, VX = 2;
+    protected final double GRAVITY = 0.2;
 
     protected int id, danio, posicionX, posicionY, tamanio, velocidadX, jumping;
     protected double velocidadY;
-    protected final double GRAVITY = 0.2;
     protected boolean facingF;
     protected Proyectil bala;
 
@@ -71,6 +71,7 @@ public abstract class Persona {
     }
 
     public abstract void die();
+    public abstract void mover(ArrayList<Obstaculos> obs);
 
     public boolean disparar() {
         if (!bala.isActive()) {
@@ -117,35 +118,6 @@ public abstract class Persona {
             }
         }
         return false;
-    }
-
-    public void moveF(boolean activ) {
-        if (activ) {
-            facingF = true;
-            setVelocidadX(VX);
-        } else {
-            setVelocidadX(0);
-        }
-    }
-
-    public void moveB(boolean activ) {
-        if (activ) {
-            facingF = false;
-            setVelocidadX(-VX);
-        } else {
-            setVelocidadX(0);
-        }
-    }
-
-    public void mover(ArrayList<Obstaculos> obs) {
-
-        //Rectangle u = new Rectangle(posicionX,posicionY,tamanio,tamanio);
-        if ((!colisionLeft(obs) && !facingF) || (!colisionRight(obs) && facingF)) {
-            posicionX += velocidadX;
-        } else {
-            velocidadX = 0;
-        }
-
     }
 
     public void gravity(ArrayList<Obstaculos> obs) {
@@ -243,11 +215,11 @@ public abstract class Persona {
         this.facingF = facingF;
     }
 
-    public static int getVX() {
+    public int getVX() {
         return VX;
     }
 
-    public static int getVY() {
+    public int getVY() {
         return VY;
     }
 

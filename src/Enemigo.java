@@ -24,8 +24,9 @@ public class Enemigo extends Persona implements ActionListener {
         disp.start();
     }
 
-    public Enemigo(int id, int danio, int posicionX, int posicionY, int tamanio, int velDisp) {
+    public Enemigo(int id, int danio, int posicionX, int posicionY, int tamanio, int velDisp, int vx) {
         super(id, danio, posicionX, posicionY, tamanio);
+        this.velocidadX = vx;
         this.velDisp = velDisp;
         disp = new Timer(velDisp * 1000, this);
         disp.start();
@@ -36,6 +37,7 @@ public class Enemigo extends Persona implements ActionListener {
         Random random = new Random();
         this.posicionX = random.nextInt(1150);
         this.posicionY = 1;
+        disp.stop();
 
     }
 
@@ -48,6 +50,7 @@ public class Enemigo extends Persona implements ActionListener {
     }
 
     public void paint(Graphics g) {
+        bala.paint(g);
         if (facingF) {
             g.setColor(Color.RED);
             g.fillRect(posicionX, posicionY, tamanio, tamanio);
@@ -59,29 +62,46 @@ public class Enemigo extends Persona implements ActionListener {
             g.setColor(Color.BLACK);
             g.fillRect(posicionX, posicionY + tamanio / 2, tamanio / 2, tamanio / 10);
         }
-        bala.paint(g);
     }
 
     public void mover(ArrayList<Obstaculos> obs) {
         if (velocidadY <= 0.2) {
             posicionX += velocidadX;
-            if (onEdge(obs)) {
-                velocidadX = -velocidadX;
+            if(onEdgeL(obs)) {
+                velocidadX = Math.abs(velocidadX);
+            } else if(onEdgeR(obs)){
+                velocidadX = -Math.abs(velocidadX);
             }
         }
     }
 
-    private boolean onEdge(ArrayList<Obstaculos> obs) {
+    private boolean onEdgeL(ArrayList<Obstaculos> obs) {
         ListIterator itr = obs.listIterator();
         Obstaculos tmp;
         while (itr.hasNext()) {
             tmp = (Obstaculos) itr.next();
-            if (posicionY + tamanio == tmp.getPosicionY() && ((posicionX + tamanio / 2) < tmp.getPosicionX() || (posicionX + tamanio / 2) > tmp.getPosicionX() + tmp.getTamanioX())) {
-                return true;
+            if (posicionY + tamanio == tmp.getPosicionY()){
+                if((posicionX + tamanio / 2) < tmp.getPosicionX()){
+                    return true;
+                }
             }
         }
-        return (colisionRight(obs) || colisionLeft(obs));
+        return colisionLeft(obs);
     }
+    private boolean onEdgeR(ArrayList<Obstaculos> obs) {
+        ListIterator itr = obs.listIterator();
+        Obstaculos tmp;
+        while (itr.hasNext()) {
+            tmp = (Obstaculos) itr.next();
+            if (posicionY + tamanio == tmp.getPosicionY()){
+                if((posicionX + tamanio / 2) > tmp.getPosicionX() + tmp.getTamanioX()){
+                    return true;
+                }
+            }
+        }
+        return colisionRight(obs);
+    }
+
 
     @Override
     public boolean equals(Object o) {

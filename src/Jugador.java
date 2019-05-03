@@ -1,7 +1,10 @@
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.ListIterator;
 
 public class Jugador extends Persona {
     private String nombre;
+    private int vida = 3;
 
     public Jugador(int id, int danio, int posicionX, int posicionY, int tamanio, String nombre) {
         super(id, danio, posicionX, posicionY, tamanio);
@@ -16,9 +19,11 @@ public class Jugador extends Persona {
     @Override
     public void die() {
         System.out.println("You dead bro");
+        vida--;
     }
 
     public void paint(Graphics g) {
+        bala.paint(g);
         if (facingF) {
             g.setColor(Color.BLUE);
             g.fillRect(posicionX, posicionY, tamanio, tamanio);
@@ -30,7 +35,33 @@ public class Jugador extends Persona {
             g.setColor(Color.RED);
             g.fillRect(posicionX, posicionY + tamanio / 2, tamanio / 2, tamanio / 10);
         }
-        bala.paint(g);
+    }
+
+    public void moveF(boolean activ) {
+        if (activ) {
+            facingF = true;
+            setVelocidadX(VX);
+        } else {
+            setVelocidadX(0);
+        }
+    }
+
+    public void moveB(boolean activ) {
+        if (activ) {
+            facingF = false;
+            setVelocidadX(-VX);
+        } else {
+            setVelocidadX(0);
+        }
+    }
+
+    public void mover(ArrayList<Obstaculos> obs) {
+        //Rectangle u = new Rectangle(posicionX,posicionY,tamanio,tamanio);
+        if ((!colisionLeft(obs) && !facingF) || (!colisionRight(obs) && facingF)) {
+            posicionX += velocidadX;
+        } else {
+            velocidadX = 0;
+        }
     }
 
     public String getNombre() {
@@ -41,4 +72,11 @@ public class Jugador extends Persona {
         this.nombre = nombre;
     }
 
+    public int getVida() {
+        return vida;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
 }
