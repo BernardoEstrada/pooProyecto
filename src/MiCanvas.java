@@ -9,10 +9,9 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 
 public class MiCanvas extends Canvas implements KeyListener, ActionListener {
-    private int nivel;
     private Jugador usuario;
+    private Nivel lvl;
     private Timer relojUpdate;
-    ArrayList<Obstaculos> obs;
     ArrayList<Enemigo> enemigos;
 
     private BufferedImage imagen;
@@ -20,19 +19,15 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
 
     public MiCanvas() {
         super();
-        nivel = 0;
         this.setFocusable(true);
-        obs = new ArrayList<>(5);
         enemigos = new ArrayList<>(5);
         usuario = new Jugador(1, 50, 50, 50, "Martin");
+
+        lvl = new Nivel();
 
         enemigos.add(new Enemigo(1, 50, 525, 1, 50, 3, 3));
         enemigos.add(new Enemigo(2, 50, 300, 1, 50, 1, 2));
         //enemy = new Enemigo(1,50,200,50, 50, 1, 10, 10);
-
-        obs.add(new Obstaculos(1, 0, 500, 1200, 100));
-        obs.add(new Obstaculos(2, 300, 400, 100, 100));
-        obs.add(new Obstaculos(3, 500, 350, 100, 50));
 
 
         addKeyListener(this);
@@ -46,10 +41,8 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         Graphics gra = imagen.createGraphics();
         gra.setColor(Color.white);
         gra.fillRect(0, 0, this.getWidth(), this.getHeight());
-        ListIterator<Obstaculos> itrO = obs.listIterator();
-        while (itrO.hasNext()) {
-            itrO.next().paint(gra);
-        }
+        lvl.paint(gra);
+
         ListIterator<Enemigo> itrE = enemigos.listIterator();
         while (itrE.hasNext()) {
             itrE.next().paint(gra);
@@ -62,35 +55,35 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
 
     public void update(Graphics g) {
 
-        usuario.gravity(obs);
-        usuario.mover(obs);
+        usuario.gravity(lvl.getObs());
+        usuario.mover(lvl.getObs());
 
         //System.out.println(usuario.getPosicionX() + ", " + usuario.getVelocidadX());
 
-        if(usuario.getPosicionX()==1150){
-            //nextLevel();
-            System.out.println(enemigos.size());
+        if(usuario.getPosicionX()==1150 && enemigos.size()==0){
+            nextLevel();
         }
 
-        if(usuario.getBala().colision(obs)){
+        if(usuario.getBala().colision(lvl.getObs())){
             usuario.getBala().setActive(false);
         }
 
         ArrayList<Enemigo> remove = new ArrayList<>(5);
+
         ListIterator<Enemigo> itrE = enemigos.listIterator();
+
         while (itrE.hasNext()) {
             Enemigo tmp = itrE.next();
-            tmp.gravity(obs);
-            tmp.mover(obs);
+            tmp.gravity(lvl.getObs());
+            tmp.mover(lvl.getObs());
+
             if(tmp.impactoProyectil(usuario.getBala())){
                 usuario.getBala().setActive(false);
-                //tmp.die();
                 remove.add(tmp);
             }
-
             tmp.setFacingF(tmp.getPosicionX()<usuario.getPosicionX());
 
-            if(tmp.getBala().colision(obs)){
+            if(tmp.getBala().colision(lvl.getObs())){
                 tmp.getBala().setActive(false);
             }
             if(usuario.impactoProyectil(tmp.getBala())){
@@ -112,10 +105,8 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
     }
 
     public void nextLevel(){
-        nivel++;
         enemigos.clear();
-        obs.clear();
-        obs.add(new Obstaculos(2, 0, 500, 1200, 100));
+        lvl.nextLvl();
         usuario.setPosicionX(50);
     }
 
