@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.Objects;
+import java.util.Random;
 
 public class Obstaculos {
     private int id, posicionX, posicionY, tamanioX, tamanioY;
@@ -13,6 +14,8 @@ public class Obstaculos {
     }
 
     public void paint(Graphics g) {
+        //Random r = new Random();
+        //g.setColor(new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256)));
         g.setColor(Color.BLACK);
         g.fillRect(posicionX, posicionY, tamanioX, tamanioY);
     }

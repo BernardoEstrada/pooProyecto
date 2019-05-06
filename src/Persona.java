@@ -7,14 +7,13 @@ public abstract class Persona {
     protected final int VY = 10, VX = 2;
     protected final double GRAVITY = 0.2;
 
-    protected int id, danio, posicionX, posicionY, tamanio, velocidadX, jumping;
+    protected int id, posicionX, posicionY, tamanio, velocidadX, jumping;
     protected double velocidadY;
     protected boolean facingF;
     protected Proyectil bala;
 
     public Persona() {
         id = 0;
-        danio = 5;
         posicionX = 100;
         posicionY = 100;
         tamanio = 50;
@@ -41,21 +40,6 @@ public abstract class Persona {
 
     public Persona(int id, int posicionX, int posicionY, int tamanio) {
         this.id = id;
-        this.posicionX = posicionX;
-        this.posicionY = posicionY;
-        this.tamanio = tamanio;
-        danio = 5;
-        velocidadX = 0;
-        velocidadY = 0;
-        jumping = 0;
-        facingF = true;
-        bala = new Proyectil(10, this.getPosicionX(), this.getPosicionY());
-    }
-
-
-    public Persona(int id, int danio, int posicionX, int posicionY, int tamanio) {
-        this.id = id;
-        this.danio = danio;
         this.posicionX = posicionX;
         this.posicionY = posicionY;
         this.tamanio = tamanio;
@@ -145,14 +129,6 @@ public abstract class Persona {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getDanio() {
-        return danio;
-    }
-
-    public void setDanio(int danio) {
-        this.danio = danio;
     }
 
     public int getPosicionX() {

@@ -6,15 +6,11 @@ public class Jugador extends Persona {
     private String nombre;
     private int vida = 3;
 
-    public Jugador(int id, int danio, int posicionX, int posicionY, int tamanio, String nombre) {
-        super(id, danio, posicionX, posicionY, tamanio);
-        this.nombre = nombre;
-    }
-
     public Jugador(int id, int posicionX, int posicionY, int tamanio, String nombre) {
         super(id, posicionX, posicionY, tamanio);
         this.nombre = nombre;
     }
+
 
     @Override
     public void die() {

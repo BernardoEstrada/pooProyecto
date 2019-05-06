@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.ListIterator;
+import java.util.Random;
 
 public class MiCanvas extends Canvas implements KeyListener, ActionListener {
     private Jugador usuario;
@@ -20,13 +21,12 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
     public MiCanvas() {
         super();
         this.setFocusable(true);
-        enemigos = new ArrayList<>(5);
+        enemigos = new ArrayList<>(10);
         usuario = new Jugador(1, 50, 50, 50, "Martin");
 
         lvl = new Nivel();
 
-        enemigos.add(new Enemigo(1, 50, 525, 1, 50, 3, 3));
-        enemigos.add(new Enemigo(2, 50, 300, 1, 50, 1, 2));
+        enemigos.add(new Enemigo(1, 525, -100, 50, 3000, 3));
         //enemy = new Enemigo(1,50,200,50, 50, 1, 10, 10);
 
 
@@ -74,6 +74,7 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
 
         while (itrE.hasNext()) {
             Enemigo tmp = itrE.next();
+
             tmp.gravity(lvl.getObs());
             tmp.mover(lvl.getObs());
 
@@ -83,12 +84,12 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
             }
             tmp.setFacingF(tmp.getPosicionX()<usuario.getPosicionX());
 
-            if(tmp.getBala().colision(lvl.getObs())){
-                tmp.getBala().setActive(false);
-            }
             if(usuario.impactoProyectil(tmp.getBala())){
                 tmp.getBala().setActive(false);
                 usuario.die();
+            }
+            if(tmp.getBala().colision(lvl.getObs())){
+                tmp.getBala().setActive(false);
             }
         }
 
@@ -108,6 +109,17 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         enemigos.clear();
         lvl.nextLvl();
         usuario.setPosicionX(50);
+
+        Random r = new Random();
+        int noEnemigos = 1;
+        noEnemigos = lvl.getNivel()+1;
+        if(noEnemigos>=10){
+          noEnemigos=10;
+        }
+        for (int i = 0; i<noEnemigos; i++){
+
+            enemigos.add(new Enemigo(2, r.nextInt(950)+200, -100, r.nextInt(20)+40, r.nextInt(10-noEnemigos)+500, 2));
+        }
     }
 
     @Override

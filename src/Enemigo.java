@@ -24,11 +24,11 @@ public class Enemigo extends Persona implements ActionListener {
         disp.start();
     }
 
-    public Enemigo(int id, int danio, int posicionX, int posicionY, int tamanio, int velDisp, int vx) {
-        super(id, danio, posicionX, posicionY, tamanio);
+    public Enemigo(int id, int posicionX, int posicionY, int tamanio, int velDisp, int vx) {
+        super(id, posicionX, posicionY, tamanio);
         this.velocidadX = vx;
         this.velDisp = velDisp;
-        disp = new Timer(velDisp * 1000, this);
+        disp = new Timer(velDisp, this);
         disp.start();
     }
 
