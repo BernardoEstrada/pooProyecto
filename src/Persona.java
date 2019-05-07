@@ -4,7 +4,7 @@ import java.util.ListIterator;
 
 public abstract class Persona {
 
-    protected final int VY = 10, VX = 2;
+    protected final int VY = 10, VX = 5;
     protected final double GRAVITY = 0.2;
 
     protected int id, posicionX, posicionY, tamanio, velocidadX, jumping;

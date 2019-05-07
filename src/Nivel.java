@@ -12,9 +12,9 @@ public class Nivel {
 
         nivel = 1;
         obs.add(new Obstaculos(1, 0, 500, 1200, 100));
-        obs.add(new Obstaculos(2, 300, 400, 100, 100));
-        obs.add(new Obstaculos(3, 500, 350, 100, 50));
-        obs.add(new Obstaculos(4, 700, 200, 100, 50));
+        //obs.add(new Obstaculos(2, 300, 400, 100, 100));
+        //obs.add(new Obstaculos(3, 500, 350, 100, 50));
+        //obs.add(new Obstaculos(4, 700, 200, 100, 50));
     }
 
     public void paint(Graphics g){
@@ -27,14 +27,14 @@ public class Nivel {
     public void nextLvl(){
         obs.clear();
         nivel++;
-        switch(4/*nivel % (new Random().nextInt(6))*/){
-            case 1:
+        switch(new Random().nextInt(6)){
+            case 0:
                 obs.add(new Obstaculos(1, 0, 500, 1200, 100));
                 obs.add(new Obstaculos(2, 300, 400, 100, 100));
                 obs.add(new Obstaculos(3, 500, 350, 100, 50));
                 obs.add(new Obstaculos(4, 700, 200, 100, 50));
                 break;
-            case 2:
+            case 1:
                 obs.add(new Obstaculos(1, 0, 500, 1200, 100));
 
                 obs.add(new Obstaculos(2, 300, 400, 150, 100));
@@ -45,6 +45,9 @@ public class Nivel {
                 obs.add(new Obstaculos(6, 910, 350, 120, 150));
                 obs.add(new Obstaculos(7, 1030, 250, 170, 250));
                 break;
+            case 2:
+                obs.add(new Obstaculos(1, 0, 500, 1200, 100));
+                break;
             case 3:
                 obs.add(new Obstaculos(1, 0, 500, 1200, 100));
                 break;
@@ -52,9 +55,6 @@ public class Nivel {
                 obs.add(new Obstaculos(1, 0, 500, 1200, 100));
                 break;
             case 5:
-                obs.add(new Obstaculos(1, 0, 500, 1200, 100));
-                break;
-            case 6:
                 obs.add(new Obstaculos(1, 0, 500, 1200, 100));
                 break;
         }

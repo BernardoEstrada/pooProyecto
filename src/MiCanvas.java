@@ -26,7 +26,7 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
 
         lvl = new Nivel();
 
-        enemigos.add(new Enemigo(1, 525, -100, 50, 3000, 3));
+        //enemigos.add(new Enemigo(1, 525, -100, 50, 3000, 3));
         //enemy = new Enemigo(1,50,200,50, 50, 1, 10, 10);
 
 
@@ -112,13 +112,18 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
 
         Random r = new Random();
         int noEnemigos = 1;
-        noEnemigos = lvl.getNivel()+1;
+        noEnemigos = lvl.getNivel()+r.nextInt(3)-1;
         if(noEnemigos>=10){
           noEnemigos=10;
+        } else if(noEnemigos<=0){
+            noEnemigos=1;
         }
-        for (int i = 0; i<noEnemigos; i++){
 
-            enemigos.add(new Enemigo(2, r.nextInt(950)+200, -100, r.nextInt(20)+40, r.nextInt(10-noEnemigos)+500, 2));
+        for (int i = 0; i<noEnemigos; i++){
+            int disp = r.nextInt(10-noEnemigos)+500;
+            int vel = 3-disp/1000;
+
+            enemigos.add(new Enemigo(i, r.nextInt(950)+200, -100, r.nextInt(20)+40, disp, vel));
         }
     }
 
