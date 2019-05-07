@@ -19,7 +19,7 @@ public class FondoMenu extends Canvas {
         g.setColor(Color.WHITE);
         this.setBackground(Color.WHITE);
         g.setColor(Color.BLACK);
-        g.drawString(letrero, 230, 100);
+        g.drawString(letrero, this.getWidth()/2, this.getHeight()/4);
 
     }
 

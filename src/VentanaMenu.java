@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 public class VentanaMenu extends JFrame implements ActionListener {
     private JPanel panelS;
-    private JButton iniciar;
+    private JButton iniciar,infoButton,helpButton, exitButton;
     private Canvas fondo;
     private int height, width;
 
