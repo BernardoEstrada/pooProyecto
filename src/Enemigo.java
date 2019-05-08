@@ -34,6 +34,7 @@ public class Enemigo extends Persona implements ActionListener {
 
     @Override
     public void die() {
+
         Random random = new Random();
         this.posicionX = random.nextInt(1150);
         this.posicionY = 1;
@@ -65,12 +66,15 @@ public class Enemigo extends Persona implements ActionListener {
     }
 
     public void mover(ArrayList<Obstaculos> obs) {
+        gravity(obs);
         if (velocidadY <= 0.2) {
             posicionX += velocidadX;
             if(onEdgeL(obs)) {
                 velocidadX = Math.abs(velocidadX);
+                System.out.println(velocidadX);
             } else if(onEdgeR(obs)){
                 velocidadX = -Math.abs(velocidadX);
+                System.out.println(velocidadX);
             }
         }
     }
@@ -102,9 +106,44 @@ public class Enemigo extends Persona implements ActionListener {
         return colisionRight(obs);
     }
 
+    public int getVelDisp() {
+        return velDisp;
+    }
+
+    public void setVelDisp(int velDisp) {
+        this.velDisp = velDisp;
+    }
+
+    public Timer getDisp() {
+        return disp;
+    }
+
+    public void setDisp(Timer disp) {
+        this.disp = disp;
+    }
 
     @Override
     public boolean equals(Object o) {
         return (o instanceof Enemigo && ((Enemigo) o).getId() == this.id);
+    }
+
+    @Override
+    public String toString() {
+        return "Enemigo{" +
+                "velDisp=" + velDisp +
+                ", disp=" + disp +
+                ", VY=" + VY +
+                ", VX=" + VX +
+                ", GRAVITY=" + GRAVITY +
+                ", id=" + id +
+                ", posicionX=" + posicionX +
+                ", posicionY=" + posicionY +
+                ", tamanio=" + tamanio +
+                ", velocidadX=" + velocidadX +
+                ", jumping=" + jumping +
+                ", velocidadY=" + velocidadY +
+                ", facingF=" + facingF +
+                ", bala=" + bala +
+                '}';
     }
 }

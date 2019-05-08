@@ -206,4 +206,22 @@ public abstract class Persona {
     public void setBala(Proyectil bala) {
         this.bala = bala;
     }
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "VY=" + VY +
+                ", VX=" + VX +
+                ", GRAVITY=" + GRAVITY +
+                ", id=" + id +
+                ", posicionX=" + posicionX +
+                ", posicionY=" + posicionY +
+                ", tamanio=" + tamanio +
+                ", velocidadX=" + velocidadX +
+                ", jumping=" + jumping +
+                ", velocidadY=" + velocidadY +
+                ", facingF=" + facingF +
+                ", bala=" + bala +
+                '}';
+    }
 }

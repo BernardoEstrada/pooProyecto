@@ -13,7 +13,7 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
     private Jugador usuario;
     private Nivel lvl;
     private Timer relojUpdate;
-    ArrayList<Enemigo> enemigos;
+    private ArrayList<Enemigo> enemigos;
 
     private BufferedImage imagen;
 
@@ -22,7 +22,7 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         super();
         this.setFocusable(true);
         enemigos = new ArrayList<>(10);
-        usuario = new Jugador(1, 50, 50, 50, "Martin");
+        usuario = new Jugador(1, 0, 400, 50, "Martin");
 
         lvl = new Nivel();
 
@@ -42,6 +42,7 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         gra.setColor(Color.white);
         gra.fillRect(0, 0, this.getWidth(), this.getHeight());
         lvl.paint(gra);
+        Hud.paint(gra, usuario.getVida(), lvl.getNivel());
 
         ListIterator<Enemigo> itrE = enemigos.listIterator();
         while (itrE.hasNext()) {
@@ -75,14 +76,15 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         while (itrE.hasNext()) {
             Enemigo tmp = itrE.next();
 
-            tmp.gravity(lvl.getObs());
             tmp.mover(lvl.getObs());
 
             if(tmp.impactoProyectil(usuario.getBala())){
                 usuario.getBala().setActive(false);
                 remove.add(tmp);
             }
-            tmp.setFacingF(tmp.getPosicionX()<usuario.getPosicionX());
+            if(tmp.getVelDisp()>600){
+                tmp.setFacingF(tmp.getPosicionX()<usuario.getPosicionX());
+            } else{tmp.setFacingF(false);}
 
             if(usuario.impactoProyectil(tmp.getBala())){
                 tmp.getBala().setActive(false);
@@ -112,7 +114,12 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
 
         Random r = new Random();
         int noEnemigos = 1;
-        noEnemigos = lvl.getNivel()+r.nextInt(3)-1;
+        int niv = lvl.getNivel();
+        System.out.println(niv);
+        noEnemigos = niv+r.nextInt(3)-1;
+        if(niv>10){
+            niv=10;
+        }
         if(noEnemigos>=10){
           noEnemigos=10;
         } else if(noEnemigos<=0){
@@ -120,11 +127,17 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         }
 
         for (int i = 0; i<noEnemigos; i++){
-            int disp = r.nextInt(10-noEnemigos)+500;
-            int vel = 3-disp/1000;
+            int disp = Math.abs((10-niv)*500 + r.nextInt(1000)-1500);
 
-            enemigos.add(new Enemigo(i, r.nextInt(950)+200, -100, r.nextInt(20)+40, disp, vel));
+            double vel;
+            if(disp<=800){
+                vel = 0;
+            } else{
+                vel = (double)niv/2 - (double) disp/2000 - r.nextDouble();
+            }
+            enemigos.add(new Enemigo(i, r.nextInt(950)+200, -100, r.nextInt(20)+40, disp, (int) vel));
         }
+
     }
 
     @Override
