@@ -9,7 +9,7 @@ public class Jugador extends Persona {
     public Jugador(int id, int posicionX, int posicionY, int tamanio, String nombre) {
         super(id, posicionX, posicionY, tamanio);
         this.nombre = nombre;
-        this.velocidadX=0;
+        this.velocidadX = 0;
     }
 
 

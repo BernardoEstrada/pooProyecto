@@ -7,7 +7,7 @@ public class Nivel {
     ArrayList<Obstaculos> obs;
     private int nivel;
 
-    public Nivel(){
+    public Nivel() {
         obs = new ArrayList<>(11);
 
         nivel = -1;
@@ -18,18 +18,18 @@ public class Nivel {
         nextLvl();
     }
 
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
         ListIterator<Obstaculos> itrO = obs.listIterator();
         while (itrO.hasNext()) {
             itrO.next().paint(g);
         }
     }
 
-    public void nextLvl(){
+    public void nextLvl() {
         obs.clear();
         nivel++;
         obs.add(new Obstaculos(0, 0, 500, 1200, 100));
-        switch(new Random().nextInt(5)){ //nivel%6 secuencia
+        switch (new Random().nextInt(5)) { //nivel%6 secuencia
             case 0:
                 obs.add(new Obstaculos(1, 0, 250, 300, 50));
                 obs.add(new Obstaculos(2, 300, 400, 100, 100));

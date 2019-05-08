@@ -61,11 +61,11 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
 
         //System.out.println(usuario.getPosicionX() + ", " + usuario.getVelocidadX());
 
-        if(usuario.getPosicionX()==1150 && enemigos.size()==0){
+        if (usuario.getPosicionX() == 1150 && enemigos.size() == 0) {
             nextLevel();
         }
 
-        if(usuario.getBala().colision(lvl.getObs())){
+        if (usuario.getBala().colision(lvl.getObs())) {
             usuario.getBala().setActive(false);
         }
 
@@ -78,19 +78,21 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
 
             tmp.mover(lvl.getObs());
 
-            if(tmp.impactoProyectil(usuario.getBala())){
+            if (tmp.impactoProyectil(usuario.getBala())) {
                 usuario.getBala().setActive(false);
                 remove.add(tmp);
             }
-            if(tmp.getVelDisp()>600){
-                tmp.setFacingF(tmp.getPosicionX()<usuario.getPosicionX());
-            } else{tmp.setFacingF(false);}
+            if (tmp.getVelDisp() > 600) {
+                tmp.setFacingF(tmp.getPosicionX() < usuario.getPosicionX());
+            } else {
+                tmp.setFacingF(false);
+            }
 
-            if(usuario.impactoProyectil(tmp.getBala())){
+            if (usuario.impactoProyectil(tmp.getBala())) {
                 tmp.getBala().setActive(false);
                 usuario.die();
             }
-            if(tmp.getBala().colision(lvl.getObs())){
+            if (tmp.getBala().colision(lvl.getObs())) {
                 tmp.getBala().setActive(false);
             }
         }
@@ -100,14 +102,14 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
             enemigos.remove(itrR.next());
         }
 
-        if(usuario.getVida()<=0){
+        if (usuario.getVida() <= 0) {
             relojUpdate.stop();
         }
 
         paint(g);
     }
 
-    public void nextLevel(){
+    public void nextLevel() {
         enemigos.clear();
         lvl.nextLvl();
         usuario.setPosicionX(50);
@@ -116,26 +118,26 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         int noEnemigos = 1;
         int niv = lvl.getNivel();
         System.out.println(niv);
-        noEnemigos = niv+r.nextInt(3)-1;
-        if(niv>10){
-            niv=10;
+        noEnemigos = niv + r.nextInt(3) - 1;
+        if (niv > 10) {
+            niv = 10;
         }
-        if(noEnemigos>=10){
-          noEnemigos=10;
-        } else if(noEnemigos<=0){
-            noEnemigos=1;
+        if (noEnemigos >= 10) {
+            noEnemigos = 10;
+        } else if (noEnemigos <= 0) {
+            noEnemigos = 1;
         }
 
-        for (int i = 0; i<noEnemigos; i++){
-            int disp = Math.abs((10-niv)*500 + r.nextInt(1000)-1500);
+        for (int i = 0; i < noEnemigos; i++) {
+            int disp = Math.abs((10 - niv) * 500 + r.nextInt(1000) - 1500);
 
             double vel;
-            if(disp<=800){
+            if (disp <= 800) {
                 vel = 0;
-            } else{
-                vel = (double)niv/2 - (double) disp/2000 - r.nextDouble();
+            } else {
+                vel = (double) niv / 2 - (double) disp / 2000 - r.nextDouble();
             }
-            enemigos.add(new Enemigo(i, r.nextInt(950)+200, -100, r.nextInt(20)+40, disp, (int) vel));
+            enemigos.add(new Enemigo(i, r.nextInt(950) + 200, -100, r.nextInt(20) + 40, disp, (int) vel));
         }
 
     }
@@ -148,7 +150,7 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
 		39 derecha
 		40 abajo
          */
-        if(relojUpdate.isRunning()) {
+        if (relojUpdate.isRunning()) {
             int pressed = e.getKeyCode();
 
             if (pressed == 37) {
@@ -188,5 +190,4 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
             repaint();
         }
     }
-
 }

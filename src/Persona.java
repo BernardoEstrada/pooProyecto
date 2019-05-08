@@ -50,11 +50,12 @@ public abstract class Persona {
         bala = new Proyectil(10, this.getPosicionX(), this.getPosicionY());
     }
 
-    public boolean impactoProyectil(Proyectil pro){
-        return (pro.getPosicionX()>posicionX && pro.getPosicionX()<posicionX+tamanio && pro.getPosicionY()>posicionY && pro.getPosicionY()<posicionY+tamanio && pro.isActive());
+    public boolean impactoProyectil(Proyectil pro) {
+        return (pro.getPosicionX() > posicionX && pro.getPosicionX() < posicionX + tamanio && pro.getPosicionY() > posicionY && pro.getPosicionY() < posicionY + tamanio && pro.isActive());
     }
 
     public abstract void die();
+
     public abstract void mover(ArrayList<Obstaculos> obs);
 
     public boolean disparar() {
