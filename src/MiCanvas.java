@@ -22,7 +22,7 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         super();
         this.setFocusable(true);
         enemigos = new ArrayList<>(10);
-        usuario = new Jugador(1, 0, 400, 50, "Martin");
+        usuario = new Jugador(1, 0, 400, 50, "Bernardo");
 
         lvl = new Nivel();
 
@@ -51,6 +51,18 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
 
         usuario.paint(gra);
 
+
+        if(!relojUpdate.isRunning()){
+            gra.setColor(new Color(0,0,0,100));
+            gra.fillRect(0,0,1200, 600);
+            gra.setColor(Color.RED);
+            gra.setFont(new Font("TimesRoman", Font.BOLD, 180));
+            gra.drawString("You Died", getWidth()/2-400, getHeight()/2+50);
+
+            gra.setColor(Color.WHITE);
+            gra.setFont(new Font("TimesRoman", Font.BOLD, 40));
+            gra.drawString("Press space to restart", getWidth()/2-200, getHeight()/2+100);
+        }
         g.drawImage(imagen, 0, 0, null);
     }
 
@@ -142,6 +154,14 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
 
     }
 
+    public void reset(){
+        enemigos = new ArrayList<>(10);
+        usuario = new Jugador(1, 0, 400, 50, "Bernardo");
+
+        lvl = new Nivel();
+        relojUpdate.start();
+    }
+
     @Override
     public void keyPressed(KeyEvent e) {
         /*
@@ -150,8 +170,8 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
 		39 derecha
 		40 abajo
          */
+        int pressed = e.getKeyCode();
         if (relojUpdate.isRunning()) {
-            int pressed = e.getKeyCode();
 
             if (pressed == 37) {
                 usuario.moveB(true);
@@ -166,6 +186,8 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
                 usuario.disparar();
             }
             this.repaint();
+        } else if(pressed == 32){
+            reset();
         }
     }
 
