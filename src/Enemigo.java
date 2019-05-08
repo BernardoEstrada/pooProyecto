@@ -71,10 +71,8 @@ public class Enemigo extends Persona implements ActionListener {
             posicionX += velocidadX;
             if(onEdgeL(obs)) {
                 velocidadX = Math.abs(velocidadX);
-                System.out.println(velocidadX);
             } else if(onEdgeR(obs)){
                 velocidadX = -Math.abs(velocidadX);
-                System.out.println(velocidadX);
             }
         }
     }
@@ -85,7 +83,7 @@ public class Enemigo extends Persona implements ActionListener {
         while (itr.hasNext()) {
             tmp = (Obstaculos) itr.next();
             if (posicionY + tamanio == tmp.getPosicionY()){
-                if((posicionX + tamanio / 2) < tmp.getPosicionX()){
+                if((posicionX + tamanio / 2) <= tmp.getPosicionX()){
                     return true;
                 }
             }
@@ -98,7 +96,7 @@ public class Enemigo extends Persona implements ActionListener {
         while (itr.hasNext()) {
             tmp = (Obstaculos) itr.next();
             if (posicionY + tamanio == tmp.getPosicionY()){
-                if((posicionX + tamanio / 2) > tmp.getPosicionX() + tmp.getTamanioX()){
+                if((posicionX + tamanio / 2) >= tmp.getPosicionX() + tmp.getTamanioX()){
                     return true;
                 }
             }

@@ -4,7 +4,7 @@ import java.util.ListIterator;
 
 public class Jugador extends Persona {
     private String nombre;
-    private int vida = 5;
+    private int vida = 10;
 
     public Jugador(int id, int posicionX, int posicionY, int tamanio, String nombre) {
         super(id, posicionX, posicionY, tamanio);
@@ -15,7 +15,6 @@ public class Jugador extends Persona {
 
     @Override
     public void die() {
-        //System.out.println("You dead bro");
         vida--;
     }
 

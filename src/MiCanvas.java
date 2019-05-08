@@ -71,8 +71,6 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         usuario.gravity(lvl.getObs());
         usuario.mover(lvl.getObs());
 
-        //System.out.println(usuario.getPosicionX() + ", " + usuario.getVelocidadX());
-
         if (usuario.getPosicionX() == 1150 && enemigos.size() == 0) {
             nextLevel();
         }
@@ -129,7 +127,6 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         Random r = new Random();
         int noEnemigos = 1;
         int niv = lvl.getNivel();
-        System.out.println(niv);
         noEnemigos = niv + r.nextInt(3) - 1;
         if (niv > 10) {
             niv = 10;
@@ -149,7 +146,7 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
             } else {
                 vel = (double) niv / 2 - (double) disp / 2000 - r.nextDouble();
             }
-            enemigos.add(new Enemigo(i, r.nextInt(950) + 200, -100, r.nextInt(20) + 40, disp, (int) vel));
+            enemigos.add(new Enemigo(i, r.nextInt(950) + 200, -100, r.nextInt(20) + 40, disp, (int) Math.round(vel)));
         }
 
     }

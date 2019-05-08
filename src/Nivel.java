@@ -53,11 +53,11 @@ public class Nivel {
                 obs.add(new Obstaculos(5, 920, 300, 120, 200));
                 break;
             case 3:
-                obs.add(new Obstaculos(1, 300, 200, 250, 50));
-                obs.add(new Obstaculos(2, 700, 200, 250, 50));
-                obs.add(new Obstaculos(3, 200, 350, 250, 50));
-                obs.add(new Obstaculos(4, 600, 350, 250, 50));
-                obs.add(new Obstaculos(5, 1000, 350, 250, 50));
+                obs.add(new Obstaculos(3, 300, 200, 250, 50));
+                obs.add(new Obstaculos(5, 700, 201, 250, 50));
+                obs.add(new Obstaculos(7, 200, 349, 250, 50));
+                obs.add(new Obstaculos(9, 600, 350, 250, 50));
+                obs.add(new Obstaculos(16, 1000, 351, 250, 50));
                 break;
             case 4:
                 obs.add(new Obstaculos(1, 200, 400, 100, 100));
