@@ -1,5 +1,11 @@
 import javax.swing.*;
 
+/**
+ * @author Bernardo Estrada & Martin Noboa
+ * matriculas:
+ * @version final
+ * @date May 8th,2019
+ */
 public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, UnsupportedLookAndFeelException, IllegalAccessException {

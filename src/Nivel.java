@@ -50,7 +50,7 @@ public class Nivel {
                 obs.add(new Obstaculos(2, 200, 300, 100, 200));
                 obs.add(new Obstaculos(3, 300, 250, 100, 250));
                 obs.add(new Obstaculos(4, 800, 350, 120, 150));
-                obs.add(new Obstaculos(5, 920, 300, 120, 200));
+                obs.add(new Obstaculos(5, 920, 301, 120, 200));
                 break;
             case 3:
                 obs.add(new Obstaculos(3, 300, 200, 250, 50));

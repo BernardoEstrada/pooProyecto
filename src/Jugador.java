@@ -21,15 +21,27 @@ public class Jugador extends Persona {
     public void paint(Graphics g) {
         bala.paint(g);
         if (facingF) {
-            g.setColor(Color.BLUE);
+            g.setColor(Color.GRAY);
             g.fillRect(posicionX, posicionY, tamanio, tamanio);
-            g.setColor(Color.RED);
-            g.fillRect(posicionX + tamanio / 2, posicionY + tamanio / 2, tamanio / 2, tamanio / 10);
+            g.setColor(Color.black);
+            g.fillRect(posicionX+tamanio-18, posicionY+10, 15, 15);
+            g.fillRect(posicionX+tamanio-37, posicionY+10, 15, 15);
+            g.fillRect(posicionX+tamanio-15, posicionY+13, 15, 3);
+            g.fillRect(posicionX, posicionY+13, 25, 3);
+            g.fillRect(posicionX+tamanio-24, posicionY+11, 15, 2);
+            g.fillRect(posicionX + tamanio / 2-10, posicionY + tamanio / 2+5, tamanio / 2, tamanio / 10);
+            g.fillRect(posicionX + tamanio / 2-10, posicionY + tamanio / 2+5, 5, 15);
         } else {
-            g.setColor(Color.BLUE);
+            g.setColor(Color.GRAY);
             g.fillRect(posicionX, posicionY, tamanio, tamanio);
-            g.setColor(Color.RED);
-            g.fillRect(posicionX, posicionY + tamanio / 2, tamanio / 2, tamanio / 10);
+            g.setColor(Color.black);
+            g.fillRect(posicionX+3, posicionY+10, 15, 15);
+            g.fillRect(posicionX+22, posicionY+10, 15, 15);
+            g.fillRect(posicionX, posicionY+13, 15, 3);
+            g.fillRect(posicionX+tamanio-25, posicionY+13, 25, 3);
+            g.fillRect(posicionX+9, posicionY+11, 15, 2);
+            g.fillRect(posicionX + tamanio / 2-10, posicionY + tamanio / 2+5, tamanio / 2, tamanio / 10);
+            g.fillRect(posicionX + tamanio / 2+10, posicionY + tamanio / 2+5, 5, 15);
         }
     }
 

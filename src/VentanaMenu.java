@@ -1,11 +1,10 @@
-import java.awt.BorderLayout;
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,8 +13,10 @@ import javax.swing.JPanel;
 public class VentanaMenu extends JFrame implements ActionListener {
     private JPanel panelS;
     private JButton iniciar,infoButton,helpButton, exitButton;
-    private Canvas fondo;
     private int height, width;
+    private Image bg;
+
+    private boolean help;
 
 
     public VentanaMenu(int height, int width) {
@@ -26,27 +27,48 @@ public class VentanaMenu extends JFrame implements ActionListener {
         this.setLayout(new BorderLayout());
         panelS = new JPanel();
         iniciar = new JButton("Start");
+        iniciar.setFont(new Font("Helvetica", Font.BOLD,18));
+        iniciar.setBorderPainted(false);
 
         iniciar.addActionListener(this);
 
+        helpButton = new JButton("Help");
+        helpButton.setFont(new Font("Helvetica", Font.BOLD,18));
+        helpButton.setBorderPainted(false);
+        helpButton.addActionListener(this);
+        helpButton.setPreferredSize(new Dimension(150, 60));
 
         iniciar.setPreferredSize(new Dimension(150, 60));
-
+        try {
+            bg = ImageIO.read(new File("images/bg1.jpg"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
 
         panelS.setLayout(new FlowLayout());
         panelS.setOpaque(true);
         panelS.setBackground(Color.WHITE);
         panelS.setForeground(Color.MAGENTA);
         panelS.add(iniciar);
+        panelS.add(helpButton);
 
-        fondo = new FondoMenu("Por Gloria");
+
 
         this.height = height;
         this.width = width;
 
-        this.add(fondo, BorderLayout.CENTER);
         this.add(panelS, BorderLayout.SOUTH);
     }
+
+    public void paint(Graphics g){
+
+        g.drawImage(bg, 0, 0,1200 ,600,this);
+        if (help){
+            g.fillRect(0,0,1200,600);
+        }
+    }
+
+
 
     @Override
     public void actionPerformed(ActionEvent evento) {
@@ -56,7 +78,12 @@ public class VentanaMenu extends JFrame implements ActionListener {
             mv.setVisible(true);
             mv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.setVisible(false);
-        } else {
+        } else if(evento.getSource() == helpButton){
+            VentanaAyuda va = new VentanaAyuda(height,width);
+            va.setVisible(true);
+            va.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setVisible(false);
+        }else {
             System.exit(0);
 
         }

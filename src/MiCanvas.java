@@ -1,3 +1,4 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -5,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.Random;
@@ -16,6 +19,7 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
     private ArrayList<Enemigo> enemigos;
 
     private BufferedImage imagen;
+    private Image bg, img1, img2, img3;
 
 
     public MiCanvas() {
@@ -25,6 +29,14 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         usuario = new Jugador(1, 0, 400, 50, "Bernardo");
 
         lvl = new Nivel();
+        try {
+            bg = ImageIO.read(new File("images/bg2.jpg"));
+            img1 = ImageIO.read(new File("images/bg2.jpg"));
+            img2 = ImageIO.read(new File("images/bg3.jpg"));
+            img3 = ImageIO.read(new File("images/bg4.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //enemigos.add(new Enemigo(1, 525, -100, 50, 3000, 3));
         //enemy = new Enemigo(1,50,200,50, 50, 1, 10, 10);
@@ -37,10 +49,12 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         relojUpdate.start();
     }
 
+    /**
+     * @param g of Graphics class
+     */
     public void paint(Graphics g) {
         Graphics gra = imagen.createGraphics();
-        gra.setColor(Color.white);
-        gra.fillRect(0, 0, this.getWidth(), this.getHeight());
+        gra.drawImage(bg, 0, 0, 1200, 600, this);
         lvl.paint(gra);
         Hud.paint(gra, usuario.getVida(), lvl.getNivel());
 
@@ -52,20 +66,25 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         usuario.paint(gra);
 
 
-        if(!relojUpdate.isRunning()){
-            gra.setColor(new Color(0,0,0,100));
-            gra.fillRect(0,0,1200, 600);
+        if (!relojUpdate.isRunning()) {
+            gra.setColor(new Color(0, 0, 0, 100));
+            gra.fillRect(0, 0, 1200, 600);
             gra.setColor(Color.RED);
             gra.setFont(new Font("TimesRoman", Font.BOLD, 180));
-            gra.drawString("You Died", getWidth()/2-400, getHeight()/2+50);
+            gra.drawString("You Died", getWidth() / 2 - 400, getHeight() / 2 + 50);
 
             gra.setColor(Color.WHITE);
             gra.setFont(new Font("TimesRoman", Font.BOLD, 40));
-            gra.drawString("Press space to restart", getWidth()/2-200, getHeight()/2+100);
+            gra.drawString("Press space to restart", getWidth() / 2 - 200, getHeight() / 2 + 100);
         }
         g.drawImage(imagen, 0, 0, null);
     }
 
+    /**
+     * This function updates the canvas, letting the objects move smoothly
+     *
+     * @param g
+     */
     public void update(Graphics g) {
 
         usuario.gravity(lvl.getObs());
@@ -119,10 +138,29 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         paint(g);
     }
 
+    /**
+     * This function generates a new level once the user defeats all enemies and reaches the end of the screen
+     */
     public void nextLevel() {
         enemigos.clear();
         lvl.nextLvl();
         usuario.setPosicionX(50);
+
+
+        switch (new Random().nextInt() % 3) {
+            case 0:
+                bg = img1;
+                break;
+            case 1:
+                bg = img2;
+                break;
+            case 2:
+                bg = img3;
+                break;
+            default:
+                break;
+        }
+
 
         Random r = new Random();
         int noEnemigos = 1;
@@ -151,7 +189,10 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
 
     }
 
-    public void reset(){
+    /**
+     * This function resets the objects in the game
+     */
+    public void reset() {
         enemigos = new ArrayList<>(10);
         usuario = new Jugador(1, 0, 400, 50, "Bernardo");
 
@@ -159,6 +200,12 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
         relojUpdate.start();
     }
 
+
+    /**
+     * Function of the KeyListener class, allos the user to move with the keyboard
+     *
+     * @param e
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         /*
@@ -183,11 +230,16 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
                 usuario.disparar();
             }
             this.repaint();
-        } else if(pressed == 32){
+        } else if (pressed == 32) {
             reset();
         }
     }
 
+    /**
+     * This function works so the side movement is smooth, one the key is held
+     *
+     * @param e
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         int released = e.getKeyCode();
@@ -204,6 +256,11 @@ public class MiCanvas extends Canvas implements KeyListener, ActionListener {
     public void keyTyped(KeyEvent e) {
     }
 
+    /**
+     * This function continuosly repaints the canvas.
+     *
+     * @param evento
+     */
     public void actionPerformed(ActionEvent evento) {
         if (evento.getSource() == relojUpdate) {
             repaint();

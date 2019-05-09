@@ -53,12 +53,12 @@ public class Enemigo extends Persona implements ActionListener {
     public void paint(Graphics g) {
         bala.paint(g);
         if (facingF) {
-            g.setColor(Color.RED);
+            g.setColor(Color.orange);
             g.fillRect(posicionX, posicionY, tamanio, tamanio);
             g.setColor(Color.BLACK);
             g.fillRect(posicionX + tamanio / 2, posicionY + tamanio / 2, tamanio / 2, tamanio / 10);
         } else {
-            g.setColor(Color.RED);
+            g.setColor(Color.orange);
             g.fillRect(posicionX, posicionY, tamanio, tamanio);
             g.setColor(Color.BLACK);
             g.fillRect(posicionX, posicionY + tamanio / 2, tamanio / 2, tamanio / 10);

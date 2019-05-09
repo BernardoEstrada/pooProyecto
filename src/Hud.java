@@ -10,6 +10,8 @@ public class Hud {
             g.fillOval(10 + (i * 30), 10, 20, 20);
         }
         g.setColor(Color.BLACK);
+        g.fillRect(5,33, 80, 20);
+        g.setColor(Color.WHITE);
         g.setFont(new Font("TimesRoman", Font.BOLD, 18));
         g.drawString("Level: " + puntos, 10, 50);
     }
